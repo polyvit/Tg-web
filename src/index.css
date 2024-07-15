@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  font-family: "Avenir Next Cyr", sans-serif;
+  color: #37383E;
+  position: relative;
+  
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+a, a:visited {
+  text-decoration: none;
+  outline: none;
+  color: #37383E;
+}
+button {
+  cursor: pointer;
+  background: transparent;
+  border: 0
+}
+
