@@ -13,10 +13,10 @@ $color-red: #ff033e;
   }
 
   .cards {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     display: grid;
-    gap: 24px;
+    gap: 24px 10px;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 170px);
   }
