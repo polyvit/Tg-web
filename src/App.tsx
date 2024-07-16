@@ -6,7 +6,6 @@ import Modal from "./components/Modal/Modal";
 import { useState } from "react";
 
 const data = getData();
-const tg = window.Telegram.WebApp;
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
