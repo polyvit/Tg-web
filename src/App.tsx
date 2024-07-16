@@ -6,6 +6,7 @@ import Modal from "./components/Modal/Modal";
 import { useState } from "react";
 
 const data = getData();
+const tg = window.Telegram.WebApp;
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +17,7 @@ function App() {
       <div className="container">
         <div className="menu">
           <img src={logo} alt="" />
-          <button>
+          {/* <button>
             <svg
               width="40"
               height="40"
@@ -28,7 +29,7 @@ function App() {
               <rect x="5" y="18" width="30" height="4" fill="#37383E"></rect>
               <rect x="5" y="26" width="30" height="4" fill="#37383E"></rect>
             </svg>
-          </button>
+          </button> */}
         </div>
         <div className="cards">
           {data.map((el) => (

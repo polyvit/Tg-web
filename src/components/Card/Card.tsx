@@ -31,11 +31,11 @@ const Card: React.FC<ICard> = ({
         <div className={styles.price}>{price} РУБ.</div>
         <div className={styles.controls}>
           <Button text="Купить" onClick={buyClickHandler} />
-          <Button
+          {/* <Button
             btnType="link"
             text="Подробнее"
             onClick={() => alert("Подробнее")}
-          />
+          /> */}
         </div>
       </div>
     </div>
