@@ -1,0 +1,30 @@
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[12].use[3]!./src/index.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    font-family: "Avenir Next Cyr", sans-serif;
+    color: #37383e;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    outline: none;
+    color: #37383e;
+}
+
+button {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}

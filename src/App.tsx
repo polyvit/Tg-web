@@ -15,7 +15,7 @@ function App() {
     <div style={{ position: "relative", paddingBottom: "30px" }}>
       <div className="container">
         <div className="menu">
-          <img src={logo} alt="" />
+          <img src={logo.src} alt="" />
           {/* <button>
             <svg
               width="40"
@@ -33,6 +33,7 @@ function App() {
         <div className="cards">
           {data.map((el) => (
             <Card
+              key={el.title}
               {...el}
               setIsOpen={setIsOpen}
               setCurrentModal={setCurrentModal}
