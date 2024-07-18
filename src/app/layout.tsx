@@ -6,7 +6,13 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <head>
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="./favicon-16x16.png"
+        ></link>
+        {/* <script src="https://telegram.org/js/telegram-web-app.js"></script> */}
         <title>MCU shop</title>
       </head>
       <body>
