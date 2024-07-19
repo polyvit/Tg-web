@@ -1,0 +1,20 @@
+.image {
+  width: 100%;
+}
+.order {
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .prices {
+    font-size: 28px;
+
+    .actual {
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    .old {
+      color: #c8c8c8;
+      text-decoration-line: line-through;
+    }
+  }
+}

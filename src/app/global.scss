@@ -32,6 +32,11 @@ button {
 
   .container {
     width: 100%;
+    padding-bottom: 20px;
+
+    .inner {
+      padding: 0px 20px;
+    }
 
     .cards {
       width: 100%;
