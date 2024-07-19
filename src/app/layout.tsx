@@ -1,3 +1,6 @@
+import Header from "../components/Header/Header";
+import "./global.scss";
+
 export default function RootLayout({
   children,
 }: {
@@ -16,7 +19,14 @@ export default function RootLayout({
         <title>MCU shop</title>
       </head>
       <body>
-        <div id="root">{children}</div>
+        <div id="root">
+          <div className="page">
+            <div className="container">
+              <Header />
+              {children}
+            </div>
+          </div>
+        </div>
       </body>
     </html>
   );

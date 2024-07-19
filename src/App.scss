@@ -1,23 +1,19 @@
 $color-red: #ff033e;
 
-.container {
-  width: 100%;
+.page {
+  position: "relative";
+  padding-bottom: "30px";
 
-  .menu {
-    padding: 40px 20px;
-    margin-bottom: 40px;
-    border-bottom: 5px solid $color-red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .cards {
+  .container {
     width: 100%;
-    margin: 0 auto;
-    display: grid;
-    gap: 24px 10px;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, 170px);
+
+    .cards {
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px 10px;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill, 170px);
+    }
   }
 }

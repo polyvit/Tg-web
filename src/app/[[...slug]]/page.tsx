@@ -1,10 +1,9 @@
-import "../../index.css";
-import { ClientOnly } from "./client";
+// import { ClientOnly } from "./client";
 
-export function generateStaticParams() {
-  return [{ slug: [""] }];
-}
+// export function generateStaticParams() {
+//   return [{ slug: [""] }];
+// }
 
-export default function Page() {
-  return <ClientOnly />;
-}
+// export default function Page() {
+//   return <ClientOnly />;
+// }

@@ -1,0 +1,45 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Avenir Next Cyr", sans-serif;
+  color: #37383e;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+  outline: none;
+  color: #37383e;
+}
+
+button {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+
+.page {
+  position: "relative";
+  padding-bottom: "30px";
+
+  .container {
+    width: 100%;
+
+    .cards {
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px 10px;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill, 170px);
+    }
+  }
+}
