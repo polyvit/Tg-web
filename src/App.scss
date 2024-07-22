@@ -20,4 +20,27 @@ $color-red: #ff033e;
     justify-content: center;
     grid-template-columns: repeat(auto-fill, 170px);
   }
+  .form_container {
+    padding: 0px 20px;
+
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 110%;
+      margin-bottom: 20px;
+    }
+    .fields {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        line-height: 1.15;
+        border: none;
+        border-bottom: 1px solid rgb(200, 200, 200);
+        padding: 12px 0px;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+  }
 }
