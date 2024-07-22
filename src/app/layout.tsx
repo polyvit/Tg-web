@@ -1,5 +1,5 @@
 import Header from "../components/Header/Header";
-import "./global.scss";
+import "./global.css";
 
 export default function RootLayout({
   children,
@@ -20,10 +20,10 @@ export default function RootLayout({
       </head>
       <body>
         <div id="root">
-          <div className="page">
-            <div className="container">
+          <div className="relative pb-[30px]">
+            <div className="w-full pb-[20px]">
               <Header />
-              <div className="inner">{children}</div>
+              <div className="px-[10px]">{children}</div>
             </div>
           </div>
         </div>

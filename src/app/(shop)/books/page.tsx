@@ -13,7 +13,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="cards">
+      <div className="w-full my-0 mx-auto grid justify-center grid-cols-fill gap-x-[10px] gap-y-[10px]">
         {data.map((el) => (
           <Card
             key={el.title}
