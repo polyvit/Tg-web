@@ -1,0 +1,11 @@
+.input {
+  line-height: 1.15;
+  border: none;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  padding: 12px 0px;
+  font-size: 18px;
+  font-weight: 400;
+  &:focus {
+    outline: none;
+  }
+}

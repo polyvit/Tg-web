@@ -21,6 +21,10 @@ $color-black: #37383e;
     background-color: $color-red;
     color: white;
   }
+  &:disabled {
+    border: 2px solid $color-black;
+    color: $color-black;
+  }
 }
 .link {
   background-color: transparent;
