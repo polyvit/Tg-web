@@ -23,7 +23,7 @@ export default function RootLayout({
           <div className="relative pb-[30px]">
             <div className="w-full pb-[20px]">
               <Header />
-              <div className="px-[10px]">{children}</div>
+              <div className="px-[20px]">{children}</div>
             </div>
           </div>
         </div>
