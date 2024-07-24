@@ -1,8 +1,24 @@
 import React from "react";
-import image from "../../../../public/01_Как открыть клинику.jpg";
+import Image from "next/image";
 import DropdownMenu from "../../../components/Dropdown/DropdownMenu";
+import db from "../../../db/db";
+import doneIcon from "../../../../public/done.svg";
+import crossIcon from "../../../../public/cross.svg";
 
-function ProductsTable({ products }) {
+async function ProductsTable() {
+  const products = await db.book.findMany({
+    select: {
+      id: true,
+      title: true,
+      price: true,
+      canPurchase: true,
+      imagePath: true,
+    },
+    orderBy: { title: "asc" },
+  });
+
+  // use TableActions in tbody
+
   const result = !products.length ? (
     <tbody>
       <td colSpan={5}>
@@ -14,27 +30,20 @@ function ProductsTable({ products }) {
   ) : (
     <tbody>
       {products.map((product) => (
-        <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+        <tr
+          key={product.id}
+          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
           <td className="px-6 py-4">
-            <svg
-              className="w-6 h-6 text-green-800 dark:text-white"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 21 21"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"
-              />
-            </svg>
+            {product.canPurchase ? (
+              <Image src={doneIcon} alt="Available" className="w-6 h-6" />
+            ) : (
+              <Image src={crossIcon} alt="Unavailable" className="w-6 h-6" />
+            )}
           </td>
           <td className="p-4">
             <img
-              src={image.src}
+              src={product.imagePath}
               className="w-16 md:w-32 max-w-[150px] max-h-[280px]"
               alt="Photo"
             />
@@ -71,43 +80,6 @@ function ProductsTable({ products }) {
             </th>
           </tr>
         </thead>
-        {/* {products.length && (
-          <tbody>
-            {products.map((product) => (
-              <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td className="px-6 py-4">
-                  <svg
-                    className="w-6 h-6 text-green-800 dark:text-white"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 21 21"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m6.072 10.072 2 2 6-4m3.586 4.314.9-.9a2 2 0 0 0 0-2.828l-.9-.9a2 2 0 0 1-.586-1.414V5.072a2 2 0 0 0-2-2H13.8a2 2 0 0 1-1.414-.586l-.9-.9a2 2 0 0 0-2.828 0l-.9.9a2 2 0 0 1-1.414.586H5.072a2 2 0 0 0-2 2v1.272a2 2 0 0 1-.586 1.414l-.9.9a2 2 0 0 0 0 2.828l.9.9a2 2 0 0 1 .586 1.414v1.272a2 2 0 0 0 2 2h1.272a2 2 0 0 1 1.414.586l.9.9a2 2 0 0 0 2.828 0l.9-.9a2 2 0 0 1 1.414-.586h1.272a2 2 0 0 0 2-2V13.8a2 2 0 0 1 .586-1.414Z"
-                    />
-                  </svg>
-                </td>
-                <td className="p-4">
-                  <img
-                    src={image.src}
-                    className="w-16 md:w-32 max-w-[150px] max-h-[280px]"
-                    alt="Photo"
-                  />
-                </td>
-                <td className="px-6 py-4">{product.title}</td>
-                <td className="px-6 py-4">{product.price} руб.</td>
-                <td className="px-6 py-4 text-right">
-                  <DropdownMenu />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        )} */}
         {result}
       </table>
     </div>

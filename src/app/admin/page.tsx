@@ -1,6 +1,6 @@
 import ProductsTable from "./_components/ProductsTable";
 import PageHeader from "./_components/PageHeader";
-import { getData } from "../../db";
+import { getData } from "../../data";
 import Button from "../../components/Button/Button";
 import Link from "next/link";
 

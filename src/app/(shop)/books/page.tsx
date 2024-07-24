@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Card from "../../../components/Card/Card";
-import { getData } from "../../../db";
+import { getData } from "../../../data";
 import Modal from "../../../components/Modal/Modal";
 
 const data = getData();

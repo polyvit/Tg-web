@@ -1,5 +1,5 @@
 import BookInfo from "../../../../components/BookInfo/BookInfo";
-import { getData } from "../../../../db";
+import { getData } from "../../../../data";
 
 const data = getData();
 

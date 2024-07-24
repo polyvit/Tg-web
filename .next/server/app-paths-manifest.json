@@ -1,1 +1,4 @@
-{}
+{
+  "/admin/new/page": "app/admin/new/page.js",
+  "/admin/page": "app/admin/page.js"
+}

@@ -1,27 +1,16 @@
+"use client";
 import React from "react";
 import Input from "../../../components/Input";
 import Button from "../../../components/Button/Button";
-import { z } from "zod";
-
-// title, price, imagePath, filePath, about, widgetGC, canPurchase
-
-const fileSchema = z.instanceof(File, { message: "Required" });
-const imageSchema = fileSchema.refine(
-  (file) => file.size === 0 || file.type.startsWith("image/")
-);
-
-const addSchema = z.object({
-  title: z.string().min(1),
-  price: z.number().int().gte(1),
-  imagePath: imageSchema.refine((file) => file.size > 0, "Required"),
-  about: z.string().min(1),
-  widgetGC: z.string().min(1),
-});
+import { addProduct } from "../_actions/products";
+import { useFormState } from "react-dom";
 
 function ProductForm() {
+  const [errors, actionFunction] = useFormState(addProduct, {});
   const inputs = [
     {
-      id: "name",
+      id: "title",
+      name: "title",
       placeholder:
         "Укажите название продукта, которое будет видно пользователям",
       label: "Название",
@@ -30,6 +19,7 @@ function ProductForm() {
     },
     {
       id: "price",
+      name: "price",
       placeholder: "1000 (руб.)",
       label: "Цена в рублях",
       errorMessage: "Поле не должно быть пустым",
@@ -38,6 +28,7 @@ function ProductForm() {
     {
       inputType: "textarea",
       id: "about",
+      name: "about",
       placeholder: "Write some words about",
       label: "Подробное описание",
       rows: 4,
@@ -45,26 +36,37 @@ function ProductForm() {
     },
     {
       inputType: "file",
-      id: "image",
+      id: "imagePath",
+      name: "imagePath",
       label: "Картинка",
       errorMessage: "Поле не должно быть пустым",
     },
     {
-      id: "widget",
+      id: "widgetGC",
+      name: "widgetGC",
       placeholder: "Прикрепите ссылку на виджет геткурса",
       label: "Ссылка на виджет ГК",
       errorMessage: "Поле не должно быть пустым",
       type: "text",
     },
   ];
+
   return (
-    <form>
+    <form action={actionFunction}>
       {inputs.map((input) => (
-        <Input key={input.id} {...input} />
+        <Input
+          key={input.id}
+          {...input}
+          errorMessage={
+            errors && errors[input.name] ? errors[input.name][0] : null
+          }
+        />
       ))}
-      <Button text="Добавить" />
+      <Button type="submit" text="Добавить" />
     </form>
   );
 }
+
+// submit button, useformStatus
 
 export default ProductForm;
