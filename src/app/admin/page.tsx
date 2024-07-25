@@ -1,6 +1,6 @@
 import ProductsTable from "./_components/ProductsTable";
 import PageHeader from "./_components/PageHeader";
-import Button from "../../components/Button/Button";
+import Button from "../../components/Button/index.tsx";
 import Link from "next/link";
 import { ROUTES } from "../../utils/routes.ts";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Card from "../../../components/Card/Card";
+import Card from "../../../components/Card";
 import { getData } from "../../../data";
-import Modal from "../../../components/Modal/Modal";
+import Modal from "../../../components/Modal";
 
 const data = getData();
 
