@@ -4,10 +4,10 @@ import DropdownContainer from "../../../components/Dropdown/DropdownContainer";
 import db from "../../../db/db";
 import doneIcon from "../../../../public/done.svg";
 import crossIcon from "../../../../public/cross.svg";
-import { IProduct } from "../../../utils/types.ts";
+import { Book } from "@prisma/client";
 
 async function ProductsTable() {
-  const products: IProduct[] = await db.book.findMany({
+  const products: Partial<Book>[] = await db.book.findMany({
     select: {
       id: true,
       title: true,

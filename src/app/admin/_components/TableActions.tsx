@@ -12,15 +12,17 @@ export function ToggleAvailabilityDropItem({
   canPurchase,
   setIsOpen,
 }: {
-  id: string;
-  canPurchase: boolean;
+  id: string | undefined;
+  canPurchase: boolean | undefined;
   setIsOpen(a: (b: boolean) => boolean): void;
 }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const clickHandler = () => {
     startTransition(async () => {
-      await toggleAvailability(id, !canPurchase);
+      if (id) {
+        await toggleAvailability(id, !canPurchase);
+      }
       setIsOpen((prev) => !prev);
       router.refresh();
     });
@@ -37,14 +39,16 @@ export function DeleteDropItem({
   id,
   setIsOpen,
 }: {
-  id: string;
+  id: string | undefined;
   setIsOpen(a: (b: boolean) => boolean): void;
 }) {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const clickHandler = () => {
     startTransition(async () => {
-      await deleteProduct(id);
+      if (id) {
+        await deleteProduct(id);
+      }
       setIsOpen((prev) => !prev);
       router.refresh();
     });
@@ -58,9 +62,9 @@ export function DeleteDropItem({
   );
 }
 
-export function ChangeDropItem() {
+export function ChangeDropItem({ id }: { id: string | undefined }) {
   return (
-    <Link href={ROUTES.EDIT}>
+    <Link href={`${ROUTES.PRODUCTS}/${id}/edit`}>
       <DropdownItem text="Изменить" />
     </Link>
   );

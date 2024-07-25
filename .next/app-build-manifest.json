@@ -18,10 +18,11 @@
       "static/css/app/admin/new/page.css",
       "static/chunks/app/admin/new/page.js"
     ],
-    "/_not-found/page": [
+    "/admin/[id]/edit/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/css/app/admin/[id]/edit/page.css",
+      "static/chunks/app/admin/[id]/edit/page.js"
     ]
   }
 }

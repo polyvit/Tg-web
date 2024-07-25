@@ -6,13 +6,13 @@ import {
   ToggleAvailabilityDropItem,
   DeleteDropItem,
 } from "../../app/admin/_components/TableActions";
-import { IProduct } from "../../utils/types";
+import { Book } from "@prisma/client";
 
-const DropdownContainer = ({ product }: { product: IProduct }) => {
+const DropdownContainer = ({ product }: { product: Partial<Book> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const productsTableMenu = {
     above: [
-      <ChangeDropItem />,
+      <ChangeDropItem id={product.id} />,
       <ToggleAvailabilityDropItem
         id={product.id}
         canPurchase={product.canPurchase}

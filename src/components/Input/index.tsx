@@ -4,6 +4,7 @@ import React, {
   TextareaHTMLAttributes,
 } from "react";
 import cn from "classnames";
+import Image from "next/image";
 
 interface IInputProps
   extends DetailedHTMLProps<
@@ -35,6 +36,7 @@ const Input: React.FC<props> = ({
   id,
   errorMessage,
   className,
+  defaultValue,
   value,
   ...props
 }) => {
@@ -51,6 +53,7 @@ const Input: React.FC<props> = ({
       {inputType === "input" && (
         <input
           id={id}
+          defaultValue={defaultValue}
           className={cn(
             className,
             "border text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700",
@@ -65,6 +68,7 @@ const Input: React.FC<props> = ({
       {inputType === "textarea" && (
         <textarea
           id={id}
+          defaultValue={defaultValue}
           className={cn(
             className,
             "block p-2.5 w-full text-sm rounded-lg border",
@@ -77,12 +81,23 @@ const Input: React.FC<props> = ({
         ></textarea>
       )}
       {inputType === "file" && (
-        <input
-          type="file"
-          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-          id={id}
-          {...props}
-        />
+        <>
+          <input
+            type="file"
+            className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            id={id}
+            {...props}
+          />
+          {defaultValue ? (
+            <Image
+              className="mt-4"
+              src={defaultValue as string}
+              alt={label ?? "Картинка из базы"}
+              height={100}
+              width={100}
+            />
+          ) : null}
+        </>
       )}
       <p
         className={cn("mt-2 text-sm", {

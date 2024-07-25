@@ -1,5 +1,5 @@
 export const ROUTES = {
     ADMIN: "/admin",
+    PRODUCTS: "/admin",
     NEW: "/admin/new",
-    EDIT: "/admin/edit"
 }
