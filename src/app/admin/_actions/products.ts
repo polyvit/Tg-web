@@ -2,7 +2,8 @@
 import { z } from "zod";
 import fs from "fs/promises"
 import db from "../../../db/db"
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { ROUTES } from "../../../utils/routes";
 
 const imageSchema = z.custom<File>().refine(
   (file) => file.size === 0 || file.type.startsWith("image/")
@@ -33,14 +34,15 @@ export async function addProduct(prevState: unknown, formData: FormData) {
       about: data.about,
       widgetGC: data.widgetGC,
     }})
-    redirect("/admin")
+    redirect(ROUTES.ADMIN)
 }
 
 export async function toggleAvailability(id: string, canPurchase: boolean) {
-  // await db.product.update({where: {id}, data: {canPurchase}})
+  await db.book.update({where: {id}, data: {canPurchase}})
 }
 
 export async function deleteProduct(id: string) {
-  // const product = await db.product.delete({where: {id}})
-  // if null return notFound()
+  const product = await db.book.delete({where: {id}})
+  if (product == null) return notFound()
+  await fs.unlink(`public${product.imagePath}`)
 }

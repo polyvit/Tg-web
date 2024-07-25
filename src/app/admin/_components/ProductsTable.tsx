@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import DropdownMenu from "../../../components/Dropdown/DropdownMenu";
+import DropdownContainer from "../../../components/Dropdown/DropdownContainer";
 import db from "../../../db/db";
 import doneIcon from "../../../../public/done.svg";
 import crossIcon from "../../../../public/cross.svg";
+import { IProduct } from "../../../utils/types.ts";
 
 async function ProductsTable() {
-  const products = await db.book.findMany({
+  const products: IProduct[] = await db.book.findMany({
     select: {
       id: true,
       title: true,
@@ -16,8 +17,6 @@ async function ProductsTable() {
     },
     orderBy: { title: "asc" },
   });
-
-  // use TableActions in tbody
 
   const result = !products.length ? (
     <tbody>
@@ -32,7 +31,7 @@ async function ProductsTable() {
       {products.map((product) => (
         <tr
           key={product.id}
-          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600"
         >
           <td className="px-6 py-4">
             {product.canPurchase ? (
@@ -51,7 +50,7 @@ async function ProductsTable() {
           <td className="px-6 py-4">{product.title}</td>
           <td className="px-6 py-4">{product.price} руб.</td>
           <td className="px-6 py-4 text-right">
-            <DropdownMenu />
+            <DropdownContainer product={product} />
           </td>
         </tr>
       ))}

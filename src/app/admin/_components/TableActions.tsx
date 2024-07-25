@@ -1,12 +1,67 @@
 "use client";
 
-export function ToggleAvailabilityDropItem(id: string, canPurchase: boolean) {
-  // useTransition
-  // onClick, startTransition, await toggleAvailability(), router.refresh()
+import { useTransition } from "react";
+import { deleteProduct, toggleAvailability } from "../_actions/products";
+import DropdownItem from "../../../components/Dropdown/DropdownItem";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ROUTES } from "../../../utils/routes";
+
+export function ToggleAvailabilityDropItem({
+  id,
+  canPurchase,
+  setIsOpen,
+}: {
+  id: string;
+  canPurchase: boolean;
+  setIsOpen(a: (b: boolean) => boolean): void;
+}) {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const clickHandler = () => {
+    startTransition(async () => {
+      await toggleAvailability(id, !canPurchase);
+      setIsOpen((prev) => !prev);
+      router.refresh();
+    });
+  };
+  return (
+    <DropdownItem
+      text={canPurchase ? "Деактивировать" : "Активировать"}
+      onClick={clickHandler}
+    />
+  );
 }
 
-export function DeleteDropItem(id: string) {
-  // useTransition
-  // onClick, startTransition, await deleteProduct(), router.refresh()
-  // await fs.unlink
+export function DeleteDropItem({
+  id,
+  setIsOpen,
+}: {
+  id: string;
+  setIsOpen(a: (b: boolean) => boolean): void;
+}) {
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const clickHandler = () => {
+    startTransition(async () => {
+      await deleteProduct(id);
+      setIsOpen((prev) => !prev);
+      router.refresh();
+    });
+  };
+  return (
+    <DropdownItem
+      text="Удалить"
+      onClick={clickHandler}
+      className="text-red-500 hover:bg-red-100"
+    />
+  );
+}
+
+export function ChangeDropItem() {
+  return (
+    <Link href={ROUTES.EDIT}>
+      <DropdownItem text="Изменить" />
+    </Link>
+  );
 }

@@ -1,20 +1,18 @@
 import ProductsTable from "./_components/ProductsTable";
 import PageHeader from "./_components/PageHeader";
-import { getData } from "../../data";
 import Button from "../../components/Button/Button";
 import Link from "next/link";
-
-const data = getData();
+import { ROUTES } from "../../utils/routes.ts";
 
 export default function Page() {
   return (
     <>
       <PageHeader text="Список продуктов">
-        <Link href="/admin/new">
+        <Link href={ROUTES.NEW}>
           <Button text="Добавить продукт" />
         </Link>
       </PageHeader>
-      <ProductsTable products={data} />
+      <ProductsTable />
     </>
   );
 }
