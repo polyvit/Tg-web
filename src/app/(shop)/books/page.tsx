@@ -1,29 +1,18 @@
-"use client";
+import { Book } from "@prisma/client";
+import ShopContainer from "./_components/ShopContainer";
+import db from "../../../db/db";
 
-import { useState } from "react";
-import Card from "../../../components/Card";
-import { getData } from "../../../data";
-import Modal from "../../../components/Modal";
-
-const data = getData();
-
-export default function Page() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentModal, setCurrentModal] = useState("");
-
-  return (
-    <>
-      <div className="w-full my-0 mx-auto grid justify-center grid-cols-fill gap-x-[10px] gap-y-[10px]">
-        {data.map((el) => (
-          <Card
-            key={el.title}
-            {...el}
-            setIsOpen={setIsOpen}
-            setCurrentModal={setCurrentModal}
-          />
-        ))}
-      </div>
-      {isOpen && <Modal src={currentModal} setIsOpen={setIsOpen} />}
-    </>
-  );
+export default async function Page() {
+  const products: Partial<Book>[] = await db.book.findMany({
+    select: {
+      id: true,
+      title: true,
+      price: true,
+      canPurchase: true,
+      imagePath: true,
+      widgetGC: true,
+    },
+    orderBy: { title: "asc" },
+  });
+  return <ShopContainer data={products} />;
 }

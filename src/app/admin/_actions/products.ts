@@ -4,6 +4,7 @@ import fs from "fs/promises";
 import db from "../../../db/db";
 import { notFound, redirect } from "next/navigation";
 import { ROUTES } from "../../../utils/routes";
+import { bookDatabase } from "../../../utils/workDb";
 
 const imageSchema = z
   .custom<File>()
@@ -36,15 +37,16 @@ export async function addProduct(prevState: unknown, formData: FormData) {
     Buffer.from(await data.imagePath.arrayBuffer())
   );
 
-  await db.book.create({
-    data: {
-      title: data.title,
-      price: data.price,
-      imagePath: imagePath,
-      about: data.about,
-      widgetGC: data.widgetGC,
-    },
-  });
+  // await db.book.create({
+  //   data: {
+  //     title: data.title,
+  //     price: data.price,
+  //     imagePath: imagePath,
+  //     about: data.about,
+  //     widgetGC: data.widgetGC,
+  //   },
+  // });
+  await bookDatabase.createNewBook(data, imagePath)
   redirect(ROUTES.PRODUCTS);
 }
 
@@ -58,7 +60,8 @@ export async function editProduct(
     return result.error?.formErrors.fieldErrors;
   }
   const data = result.data;
-  const product = await db.book.findUnique({ where: { id } });
+  // const product = await db.book.findUnique({ where: { id } });
+  const product = await bookDatabase.findBookById(id)
 
   if (product == null) return notFound();
 
@@ -72,25 +75,28 @@ export async function editProduct(
     );
   }
 
-  await db.book.update({
-    where: { id },
-    data: {
-      title: data.title,
-      price: data.price,
-      imagePath: imagePath,
-      about: data.about,
-      widgetGC: data.widgetGC,
-    },
-  });
+  // await db.book.update({
+  //   where: { id },
+  //   data: {
+  //     title: data.title,
+  //     price: data.price,
+  //     imagePath: imagePath,
+  //     about: data.about,
+  //     widgetGC: data.widgetGC,
+  //   },
+  // });
+  await bookDatabase.updateBook(id, data, imagePath)
   redirect(ROUTES.PRODUCTS);
 }
 
 export async function toggleAvailability(id: string, canPurchase: boolean) {
-  await db.book.update({ where: { id }, data: { canPurchase } });
+  // await db.book.update({ where: { id }, data: { canPurchase } });
+  await bookDatabase.updateCanPurchaseBook(id, canPurchase)
 }
 
 export async function deleteProduct(id: string) {
-  const product = await db.book.delete({ where: { id } });
+  // const product = await db.book.delete({ where: { id } });
+  const product = await bookDatabase.deleteBookById(id)
   if (product == null) return notFound();
   await fs.unlink(`public${product.imagePath}`);
 }

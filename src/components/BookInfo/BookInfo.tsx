@@ -5,7 +5,7 @@ const BookInfo = ({ data }) => {
   return (
     <>
       <h1>{data.title}</h1>
-      <img className="w-full md:min-w-[33%]" src={data.Image} alt="image" />
+      <img className="w-full md:max-w-[33%]" src={data.imagePath} alt="image" />
       <p style={{ lineHeight: "1.4" }}>{data.about}</p>
       <div>
         <div className="mb-2.5">Цена:</div>

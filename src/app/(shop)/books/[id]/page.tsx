@@ -1,12 +1,12 @@
 import BookInfo from "../../../../components/BookInfo/BookInfo";
 import { getData } from "../../../../data";
+import { bookDatabase } from "../../../../utils/workDb";
 
-const data = getData();
-
-export default function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { id: string } }) {
+  const product = await bookDatabase.findBookById(params.id);
   return (
     <div>
-      <BookInfo data={data[params.id]} />
+      <BookInfo data={product} />
     </div>
   );
 }

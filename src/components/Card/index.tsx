@@ -1,32 +1,36 @@
+import { Book } from "@prisma/client";
 import Button from "../Button";
+import { ROUTES } from "../../utils/routes";
 
-interface ICard {
-  Image: string;
-  price: number;
-  title: string;
-  src: string;
+interface ICard extends Book {
   setIsOpen(x: boolean): void;
   setCurrentModal(x: string): void;
 }
 
-const Card: React.FC<ICard> = ({
-  Image,
+type CardProps = Partial<ICard>;
+
+const Card: React.FC<CardProps> = ({
+  id,
+  imagePath,
   title,
   price,
-  src,
+  widgetGC,
   setIsOpen,
   setCurrentModal,
 }) => {
   const buyClickHandler = () => {
-    setIsOpen(true);
-    setCurrentModal(src);
+    if (setIsOpen && setCurrentModal && widgetGC) {
+      setIsOpen(true);
+      setCurrentModal(widgetGC);
+    }
   };
+  console.log(widgetGC);
 
   return (
     <div className="h-full border border-solid border-card-border text-center">
-      <img src={Image} alt="" className="w-full" />
+      <img src={imagePath} alt="image" className="w-full" />
       <div className="flex flex-col gap-6	text-center pt-2.5 px-2.5 pb-5">
-        <a href="" className="text-lg">
+        <a href={`${ROUTES.BOOKS}/${id}`} className="text-lg">
           {title}
         </a>
         <div className="text-2xl font-bold">{price} РУБ.</div>
