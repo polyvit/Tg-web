@@ -1,4 +1,6 @@
 import { redirect } from "next/navigation";
+import { ROUTES } from "../utils/routes";
+
 export default async function Home() {
-  redirect("/books");
+  redirect(ROUTES.BOOKS);
 }

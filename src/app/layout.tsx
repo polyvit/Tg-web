@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import "./global.css";
 
 export default function RootLayout({
@@ -22,7 +21,6 @@ export default function RootLayout({
         <div id="root">
           <div className="relative pb-[30px]">
             <div className="w-full pb-[20px]">
-              <Header />
               <div>{children}</div>
             </div>
           </div>
