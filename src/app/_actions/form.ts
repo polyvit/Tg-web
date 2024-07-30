@@ -1,7 +1,6 @@
 "use server"
-import { redirect } from "next/navigation";
-import { ROUTES } from "../../utils/routes";
 import { z } from "zod";
+import { sendTgMethod } from "../../utils/tgService";
 
 const formSchema = z.object({
   name: z.string().min(1, { message: "Это поле не должно быть пустым" }),
@@ -12,10 +11,10 @@ const formSchema = z.object({
 export async function sendToTG(prevState: unknown, formData: FormData) {
   const result = formSchema.safeParse(Object.fromEntries(formData.entries()));
   if (result.success === false) {
-    return result.error?.formErrors.fieldErrors;
+    return {errors: result.error?.formErrors.fieldErrors, isSuccess: null};
   }
   const data = result.data;
   const text = `Заявка от ${data.name}\nПочта: ${data.email}\nТелефон: ${data.tel}`;
-  console.log("text", text)
-//   redirect(ROUTES.PRODUCTS);
+  const response = await sendTgMethod(text)
+  return {errors: null, isSuccess: response}
 }

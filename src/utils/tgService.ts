@@ -18,4 +18,5 @@ export async function sendTgMethod(text: string) {
   if (!response.ok) {
     throw new Error(data.description || "Что-то пошло не так");
   }
+  return true
 }
