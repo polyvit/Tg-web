@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Card from "../../../../components/Card";
-import Modal from "../../../../components/Modal";
+import Card from "../../../../../components/Card";
+import Modal from "../../../../../components/Modal";
 import { Book } from "@prisma/client";
 
 const ShopContainer = ({ data }: { data: Partial<Book>[] }) => {

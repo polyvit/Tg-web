@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
+import Input from "../../../../components/Input";
+import Button from "../../../../components/Button";
 import { addProduct, editProduct } from "../_actions/products";
 import { useFormState, useFormStatus } from "react-dom";
 import { Book } from "@prisma/client";

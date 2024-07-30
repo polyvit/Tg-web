@@ -5,7 +5,7 @@ import {
   ChangeDropItem,
   ToggleAvailabilityDropItem,
   DeleteDropItem,
-} from "../../app/admin/_components/TableActions";
+} from "../../app/(AdminLayout)/admin/_components/TableActions";
 import { Book } from "@prisma/client";
 
 const DropdownContainer = ({ product }: { product: Partial<Book> }) => {

@@ -1,8 +1,8 @@
-import ProductsTable from "./_components/ProductsTable";
-import PageHeader from "../_components/PageHeader.tsx";
-import Button from "../../components/Button/index.tsx";
+import ProductsTable from "./_components/ProductsTable.tsx";
+import PageHeader from "../../_components/PageHeader.tsx";
+import Button from "../../../components/Button/index.tsx";
 import Link from "next/link";
-import { ROUTES } from "../../utils/routes.ts";
+import { ROUTES } from "../../../utils/routes.ts";
 
 export default function Page() {
   return (

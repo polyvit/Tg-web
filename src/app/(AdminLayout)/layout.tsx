@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import { NavLink } from "../components/Nav";
-import { ROUTES } from "../utils/routes";
-import "./global.css";
+import Header from "../../components/Header";
+import { NavLink } from "../../components/Nav";
+import { ROUTES } from "../../utils/routes";
+import "../global.css";
 
 export default function RootLayout({
   children,
@@ -24,8 +24,8 @@ export default function RootLayout({
         <div id="root">
           <div className="relative pb-[30px]">
             <div className="w-full pb-[20px]">
-              <Header>
-                <NavLink href={ROUTES.BOOKS}>Книги</NavLink>
+              <Header logoLink={ROUTES.ADMIN}>
+                <NavLink href={ROUTES.PRODUCTS}>Продукты</NavLink>
               </Header>
               <div>{children}</div>
             </div>

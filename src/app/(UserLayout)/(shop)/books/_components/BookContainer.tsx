@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import Modal from "../../../../components/Modal";
-import BookInfo from "../../../../components/BookInfo/BookInfo";
+import Modal from "../../../../../components/Modal";
+import BookInfo from "../../../../../components/BookInfo/BookInfo";
 
 const BookContainer = ({ product }) => {
   const [isOpen, setIsOpen] = useState(false);

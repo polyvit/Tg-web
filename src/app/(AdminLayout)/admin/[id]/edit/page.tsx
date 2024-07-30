@@ -1,7 +1,7 @@
 import React from "react";
-import PageHeader from "../../../_components/PageHeader";
+import PageHeader from "../../../../_components/PageHeader";
 import ProductForm from "../../_components/ProductForm";
-import { bookDatabase } from "../../../../utils/workDb";
+import { bookDatabase } from "../../../../../utils/workDb";
 
 export default async function EditPage({ params: { id } }) {
   const product = await bookDatabase.findBookById(id);

@@ -1,5 +1,5 @@
-import CourseForm from "./_components/CourseForm";
-import PageHeader from "./_components/PageHeader";
+import CourseForm from "../_components/CourseForm";
+import PageHeader from "../_components/PageHeader";
 
 export default function Home() {
   return (

@@ -1,6 +1,6 @@
 import { Book } from "@prisma/client";
 import ShopContainer from "./_components/ShopContainer";
-import { bookDatabase } from "../../../utils/workDb";
+import { bookDatabase } from "../../../../utils/workDb";
 
 // async function funcRender(p1, p2) {
 //   "use server";

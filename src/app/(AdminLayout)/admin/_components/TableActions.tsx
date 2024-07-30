@@ -2,10 +2,10 @@
 
 import { useTransition } from "react";
 import { deleteProduct, toggleAvailability } from "../_actions/products";
-import DropdownItem from "../../../components/Dropdown/DropdownItem";
+import DropdownItem from "../../../../components/Dropdown/DropdownItem";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { ROUTES } from "../../../utils/routes";
+import { ROUTES } from "../../../../utils/routes";
 
 export function ToggleAvailabilityDropItem({
   id,
