@@ -1,6 +1,13 @@
 import { redirect } from "next/navigation";
 import { ROUTES } from "../utils/routes";
+import CourseForm from "./_components/CourseForm";
+import PageHeader from "./_components/PageHeader";
 
-export default async function Home() {
-  redirect(ROUTES.BOOKS);
+export default function Home() {
+  return (
+    <div className="px-[20px]">
+      <PageHeader text="Заполните форму" />
+      <CourseForm />
+    </div>
+  );
 }
