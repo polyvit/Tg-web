@@ -2,6 +2,11 @@ import { Book } from "@prisma/client";
 import ShopContainer from "./_components/ShopContainer";
 import db from "../../../db/db";
 
+// async function funcRender(p1, p2) {
+//   "use server";
+//   return <ShopFront p1={p1} p2={p2} />;
+// }
+
 export default async function Page() {
   const products: Partial<Book>[] = await db.book.findMany({
     select: {
@@ -14,5 +19,11 @@ export default async function Page() {
     },
     orderBy: { title: "asc" },
   });
-  return <ShopContainer data={products} />;
+  return (
+    // <ModalProvider render={funcRender}></ModalProvider>
+    // <ShopContainer>
+    //   <ShopFront data={products} string="aaaa" />
+    // </ShopContainer>
+    <ShopContainer data={products} />
+  );
 }
