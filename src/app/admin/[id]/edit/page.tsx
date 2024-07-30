@@ -1,10 +1,10 @@
 import React from "react";
 import PageHeader from "../../../_components/PageHeader";
 import ProductForm from "../../_components/ProductForm";
-import db from "../../../../db/db";
+import { bookDatabase } from "../../../../utils/workDb";
 
 export default async function EditPage({ params: { id } }) {
-  const product = await db.book.findUnique({ where: { id } });
+  const product = await bookDatabase.findBookById(id);
 
   return (
     <>
@@ -12,4 +12,21 @@ export default async function EditPage({ params: { id } }) {
       <ProductForm product={product} />
     </>
   );
+}
+
+export async function generateStaticParams() {
+  const books = await bookDatabase.getAllBooks({
+    select: {
+      id: true,
+      title: true,
+      price: true,
+      canPurchase: true,
+      imagePath: true,
+      widgetGC: true,
+    },
+  });
+
+  return books.map((book) => ({
+    id: book.id,
+  }));
 }

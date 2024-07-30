@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "../../../../components/Card";
 
-// @ts-ignore
 const ShopFront = ({ data, setIsOpen, setCurrentModal }) => {
   return (
     <div className="w-full my-0 mx-auto grid justify-center grid-cols-fill gap-x-[10px] gap-y-[10px]">

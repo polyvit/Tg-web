@@ -16,7 +16,7 @@ export function ToggleAvailabilityDropItem({
   canPurchase: boolean | undefined;
   setIsOpen(a: (b: boolean) => boolean): void;
 }) {
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const router = useRouter();
   const clickHandler = () => {
     startTransition(async () => {
@@ -42,7 +42,7 @@ export function DeleteDropItem({
   id: string | undefined;
   setIsOpen(a: (b: boolean) => boolean): void;
 }) {
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
   const router = useRouter();
   const clickHandler = () => {
     startTransition(async () => {

@@ -1,7 +1,6 @@
 "use server";
 import { z } from "zod";
 import fs from "fs/promises";
-import db from "../../../db/db";
 import { notFound, redirect } from "next/navigation";
 import { ROUTES } from "../../../utils/routes";
 import { bookDatabase } from "../../../utils/workDb";

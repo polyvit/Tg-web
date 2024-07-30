@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import Modal from "../../../../components/Modal";
-import { Book } from "@prisma/client";
 import BookInfo from "../../../../components/BookInfo/BookInfo";
 
 const BookContainer = ({ product }) => {

@@ -1,6 +1,6 @@
 import { Book } from "@prisma/client";
 import ShopContainer from "./_components/ShopContainer";
-import db from "../../../db/db";
+import { bookDatabase } from "../../../utils/workDb";
 
 // async function funcRender(p1, p2) {
 //   "use server";
@@ -8,7 +8,7 @@ import db from "../../../db/db";
 // }
 
 export default async function Page() {
-  const products: Partial<Book>[] = await db.book.findMany({
+  const products: Partial<Book>[] = await bookDatabase.getAllBooks({
     select: {
       id: true,
       title: true,

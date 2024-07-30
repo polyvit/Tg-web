@@ -1,11 +1,9 @@
 "use client";
-import React, { ReactNode, Suspense, useState } from "react";
+import React, { useState } from "react";
 import Card from "../../../../components/Card";
 import Modal from "../../../../components/Modal";
 import { Book } from "@prisma/client";
-import ShopFront from "./ShopFront";
 
-// @ts-ignore
 const ShopContainer = ({ data }: { data: Partial<Book>[] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState("");

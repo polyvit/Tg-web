@@ -7,7 +7,10 @@ import { sendToTG } from "../_actions/form";
 import { useFormState } from "react-dom";
 
 function CourseForm() {
-  const [state, actionFunction] = useFormState(sendToTG, {});
+  const [state, actionFunction] = useFormState(sendToTG, {
+    errors: null,
+    isSuccess: false,
+  });
 
   const inputs = [
     {

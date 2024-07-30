@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
-import { ROUTES } from "../utils/routes";
 import CourseForm from "./_components/CourseForm";
 import PageHeader from "./_components/PageHeader";
 

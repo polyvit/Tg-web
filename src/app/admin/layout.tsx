@@ -6,11 +6,11 @@ import { ROUTES } from "../../utils/routes";
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <Header>
+      {/* <Header>
         <Nav>
           <NavLink href={ROUTES.PRODUCTS}>Продукты</NavLink>
         </Nav>
-      </Header>
+      </Header> */}
       <div className="px-[20px]">{children}</div>
     </>
   );

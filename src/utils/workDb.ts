@@ -1,4 +1,5 @@
 import db from "../db/db";
+import { cache } from 'react'
 
 class BookDatabase {
   async createNewBook(data, imagePath) {
@@ -33,6 +34,14 @@ class BookDatabase {
   async updateCanPurchaseBook(id, canPurchase) {
     await db.book.update({ where: { id }, data: { canPurchase } });
   }
+  async getAllBooks(settings) {
+    return await db.book.findMany(settings)
+  }
+
 }
 
 export const bookDatabase = new BookDatabase();
+
+export const getAllBooks = cache(async (settings) => {
+  return await db.book.findMany(settings)
+})

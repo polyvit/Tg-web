@@ -37,7 +37,6 @@ const Input: React.FC<props> = ({
   errorMessage,
   className,
   defaultValue,
-  value,
   ...props
 }) => {
   return (
@@ -111,11 +110,3 @@ const Input: React.FC<props> = ({
 };
 
 export default Input;
-
-// {["text-green-700 dark:text-green-500"]: value, ["text-red-700 dark:text-red-500"]: !value,}
-
-// {["border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 focus:ring-green-500 focus:border-green-500 dark:border-green-500 bg-green-50"]: value,["border-red-500 text-red-900 dark:text-red-400 placeholder-red-700 dark:placeholder-red-500 focus:ring-red-500 focus:border-red-500 dark:border-red-500 bg-red-50"]:!value,}
-
-// {["bg-green-50 border-green-300 text-green-900 placeholder-green-700 dark:placeholder-green-500"]:value,["bg-red-50 border-red-300 text-red-900 placeholder-red-700 dark:placeholder-red-500"]:!value,}
-
-// {["text-green-600 dark:text-green-500"]: value,["text-red-600 dark:text-red-500"]: !value,}

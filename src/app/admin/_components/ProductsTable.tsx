@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import DropdownContainer from "../../../components/Dropdown/DropdownContainer";
-import db from "../../../db/db";
 import doneIcon from "../../../../public/done.svg";
 import crossIcon from "../../../../public/cross.svg";
 import { Book } from "@prisma/client";
+import { bookDatabase } from "../../../utils/workDb";
 
 async function ProductsTable() {
-  const products: Partial<Book>[] = await db.book.findMany({
+  const products: Partial<Book>[] = await bookDatabase.getAllBooks({
     select: {
       id: true,
       title: true,
