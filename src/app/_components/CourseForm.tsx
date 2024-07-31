@@ -45,8 +45,9 @@ function CourseForm() {
               className="focus:outline-none border-0 border-b border-solid border-neutral-500 rounded-none"
               {...input}
               errorMessage={
-                state.errors && state.errors[input.name]
-                  ? state.errors[input.name][0]
+                state.errors &&
+                state.errors[input.name as keyof typeof state.errors]
+                  ? state.errors[input.name as keyof typeof state.errors]![0]
                   : null
               }
             />

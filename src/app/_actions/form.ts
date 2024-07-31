@@ -8,7 +8,7 @@ const formSchema = z.object({
   email: z.string().email({ message: "Введенное значение не является эл. почтой" }),
 });
 
-export async function sendToTG(prevState: unknown, formData: FormData) {
+export async function sendToTG(_: unknown, formData: FormData) {
   const result = formSchema.safeParse(Object.fromEntries(formData.entries()));
   if (result.success === false) {
     return {errors: result.error?.formErrors.fieldErrors, isSuccess: null};

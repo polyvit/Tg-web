@@ -17,6 +17,7 @@ export default async function Page() {
       imagePath: true,
       widgetGC: true,
     },
+    where: { canPurchase: true },
     orderBy: { title: "asc" },
   });
   return (

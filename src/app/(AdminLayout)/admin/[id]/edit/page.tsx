@@ -3,8 +3,8 @@ import PageHeader from "../../../../_components/PageHeader";
 import ProductForm from "../../_components/ProductForm";
 import { bookDatabase } from "../../../../../utils/workDb";
 
-export default async function EditPage({ params: { id } }) {
-  const product = await bookDatabase.findBookById(id);
+export default async function EditPage({ params }: { params: { id: string } }) {
+  const product = await bookDatabase.findBookById(params.id);
 
   return (
     <>

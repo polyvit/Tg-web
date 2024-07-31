@@ -6,7 +6,11 @@ import { addProduct, editProduct } from "../_actions/products";
 import { useFormState, useFormStatus } from "react-dom";
 import { Book } from "@prisma/client";
 
-function ProductForm({ product }: { product?: Book | null }) {
+function ProductForm({
+  product,
+}: {
+  product?: Omit<Book, "canPurchase"> | null;
+}) {
   const [errors, actionFunction] = useFormState(
     product ? editProduct.bind(null, product.id) : addProduct,
     {}
@@ -55,10 +59,14 @@ function ProductForm({ product }: { product?: Book | null }) {
       {inputs.map((input) => (
         <Input
           key={input.id}
-          defaultValue={product ? product[input.name] : ""}
+          defaultValue={
+            product ? product[input.name as keyof typeof product] ?? "" : ""
+          }
           {...input}
           errorMessage={
-            errors && errors[input.name] ? errors[input.name][0] : null
+            errors && errors[input.name as keyof typeof errors]
+              ? errors[input.name as keyof typeof errors]![0]
+              : null
           }
         />
       ))}

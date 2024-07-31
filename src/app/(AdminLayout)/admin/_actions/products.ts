@@ -23,7 +23,7 @@ const editSchema = addSchema.extend({
   imagePath: imageSchema.optional(),
 });
 
-export async function addProduct(prevState: unknown, formData: FormData) {
+export async function addProduct(_: unknown, formData: FormData) {
   const result = addSchema.safeParse(Object.fromEntries(formData.entries()));
   if (result.success === false) {
     return result.error?.formErrors.fieldErrors;
@@ -51,7 +51,7 @@ export async function addProduct(prevState: unknown, formData: FormData) {
 
 export async function editProduct(
   id: string,
-  prevState: unknown,
+  _: unknown,
   formData: FormData
 ) {
   const result = editSchema.safeParse(Object.fromEntries(formData.entries()));
