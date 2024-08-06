@@ -59,7 +59,3 @@ class BookDatabase {
 }
 
 export const bookDatabase = new BookDatabase();
-
-export const getAllBooks = cache(async (settings: ISettings) => {
-  return await db.book.findMany(settings)
-})
