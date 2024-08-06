@@ -3,7 +3,7 @@
 
 const nextConfig = {
   output: "export", // Outputs a Single-Page Application (SPA).
-  distDir: "build", // Changes the build output directory to `./dist/`.
+  distDir: "./dist", // Changes the build output directory to `./dist/`.
   // webpack: (config, { isServer }) => {
   //   if (isServer) {
   //     config.plugins = [...config.plugins, new PrismaPlugin()];
