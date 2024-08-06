@@ -12,14 +12,21 @@ const DropdownContainer = ({ product }: { product: Partial<Book> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const productsTableMenu = {
     above: [
-      <ChangeDropItem id={product.id} />,
+      <ChangeDropItem id={product.id} key={`change-${product.id}`} />,
       <ToggleAvailabilityDropItem
         id={product.id}
+        key={`available-${product.id}`}
         canPurchase={product.canPurchase}
         setIsOpen={setIsOpen}
       />,
     ],
-    below: [<DeleteDropItem id={product.id} setIsOpen={setIsOpen} />],
+    below: [
+      <DeleteDropItem
+        id={product.id}
+        setIsOpen={setIsOpen}
+        key={`delete-${product.id}`}
+      />,
+    ],
   };
   return (
     <DropdownMenu

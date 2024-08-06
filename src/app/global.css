@@ -22,7 +22,7 @@ a,
 a:visited {
   text-decoration: none;
   outline: none;
-  color: #37383e;
+  /* color: #37383e; */
 }
 
 button {

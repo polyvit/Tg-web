@@ -1,5 +1,4 @@
 import db from "../db/db";
-import { cache } from 'react'
 
 interface IData {
   title: string;

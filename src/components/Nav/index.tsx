@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import cn from "classnames";
-import { ComponentProps, ReactNode, useState } from "react";
+import { ComponentProps, ReactElement, ReactNode, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export const Nav = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,15 +47,19 @@ export const Nav = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const NavLink = (
-  props: Omit<ComponentProps<typeof Link>, "className">
-) => {
+export const NavLink = (props: ComponentProps<typeof Link>) => {
   return (
     <Link
       className={cn(
+        props.className,
         "block py-2 px-3 rounded md:bg-transparent  md:p-0 dark:text-white  hover:text-custom-red"
       )}
       {...props}
     />
   );
+};
+
+export const ClientNav = ({ children }: { children: ReactElement }) => {
+  const pathname = usePathname();
+  return pathname == children.props.href ? null : children;
 };
