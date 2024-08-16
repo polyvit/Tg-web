@@ -1,9 +1,12 @@
 "use server";
 import { z } from "zod";
-import fs from "fs/promises";
 import { notFound, redirect } from "next/navigation";
 import { ROUTES } from "../../../../utils/routes";
 import { bookDatabase } from "../../../../utils/workDb";
+import { getStorage, ref as firebaseRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
+import app from "../../../../lib/firebase";
+
+const storage = getStorage(app)
 
 const imageSchema = z
   .custom<File>()
@@ -29,23 +32,10 @@ export async function addProduct(_: unknown, formData: FormData) {
     return result.error?.formErrors.fieldErrors;
   }
   const data = result.data;
-  await fs.mkdir("public/products", { recursive: true });
-  const imagePath = `/products/${crypto.randomUUID()}-${data.imagePath.name}`;
-  await fs.writeFile(
-    `public${imagePath}`,
-    Buffer.from(await data.imagePath.arrayBuffer())
-  );
-
-  // await db.book.create({
-  //   data: {
-  //     title: data.title,
-  //     price: data.price,
-  //     imagePath: imagePath,
-  //     about: data.about,
-  //     widgetGC: data.widgetGC,
-  //   },
-  // });
-  await bookDatabase.createNewBook(data, imagePath)
+  const imageRef = firebaseRef(storage, `products/${data.imagePath.name}`)
+  await uploadBytes(imageRef, data.imagePath)
+  const url = await getDownloadURL(imageRef)
+  await bookDatabase.createNewBook(data, url) 
   redirect(ROUTES.PRODUCTS);
 }
 
@@ -59,43 +49,34 @@ export async function editProduct(
     return result.error?.formErrors.fieldErrors;
   }
   const data = result.data;
-  // const product = await db.book.findUnique({ where: { id } });
   const product = await bookDatabase.findBookById(id)
 
   if (product == null) return notFound();
 
   let imagePath = product.imagePath;
-  if (data.imagePath != null && data.imagePath.size > 0) {
-    await fs.unlink(`public${product.imagePath}`);
-    imagePath = `/products/${crypto.randomUUID()}-${data.imagePath.name}`;
-    await fs.writeFile(
-      `public${imagePath}`,
-      Buffer.from(await data.imagePath.arrayBuffer())
-    );
-  }
+  let imageName = product.imageName
 
-  // await db.book.update({
-  //   where: { id },
-  //   data: {
-  //     title: data.title,
-  //     price: data.price,
-  //     imagePath: imagePath,
-  //     about: data.about,
-  //     widgetGC: data.widgetGC,
-  //   },
-  // });
-  await bookDatabase.updateBook(id, data, imagePath)
+  if (data.imagePath != null && data.imagePath != undefined && data.imagePath.size > 0) {
+    const imageRef = firebaseRef(storage, `products/${imageName}`)
+    await deleteObject(imageRef)
+    await uploadBytes(imageRef, data.imagePath!)
+    const url = await getDownloadURL(imageRef)
+    imagePath = url
+    imageName = data.imagePath?.name as string
+  }
+  await bookDatabase.updateBook(id, data, imagePath, imageName as string)
   redirect(ROUTES.PRODUCTS);
 }
 
 export async function toggleAvailability(id: string, canPurchase: boolean) {
-  // await db.book.update({ where: { id }, data: { canPurchase } });
   await bookDatabase.updateCanPurchaseBook(id, canPurchase)
 }
 
 export async function deleteProduct(id: string) {
-  // const product = await db.book.delete({ where: { id } });
   const product = await bookDatabase.deleteBookById(id)
   if (product == null) return notFound();
-  await fs.unlink(`public${product.imagePath}`);
+  if (product.imageName) {
+    const imageRef = firebaseRef(storage, `products/${product.imageName}`)
+    await deleteObject(imageRef)
+  }
 }

@@ -15,6 +15,7 @@ model Book {
   title       String
   price       Int
   imagePath   String
+  imageName   String?
   filePath    String?
   about       String
   widgetGC    String?

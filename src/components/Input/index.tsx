@@ -4,7 +4,6 @@ import React, {
   TextareaHTMLAttributes,
 } from "react";
 import cn from "classnames";
-import Image from "next/image";
 
 interface IInputProps
   extends DetailedHTMLProps<
@@ -88,12 +87,17 @@ const Input: React.FC<props> = ({
             {...props}
           />
           {defaultValue ? (
-            <Image
-              className="mt-4"
+            // <Image
+            //   className="mt-4"
+            //   src={defaultValue as string}
+            //   alt={label ?? "Картинка из базы"}
+            //   height={100}
+            //   width={100}
+            // />
+            <img
+              className="mt-4 h-[100px] w-[auto]"
               src={defaultValue as string}
               alt={label ?? "Картинка из базы"}
-              height={100}
-              width={100}
             />
           ) : null}
         </>

@@ -25,18 +25,20 @@ class BookDatabase {
         title: data.title,
         price: data.price,
         imagePath: imagePath,
+        imageName: data.imagePath?.name,
         about: data.about,
         widgetGC: data.widgetGC,
       },
     });
   }
-  async updateBook(id: string, data: IEditedData, imagePath: string) {
+  async updateBook(id: string, data: IEditedData, imagePath: string, imageName: string) {
     await db.book.update({
       where: { id },
       data: {
         title: data.title,
         price: data.price,
         imagePath: imagePath,
+        imageName: imageName,
         about: data.about,
         widgetGC: data.widgetGC,
       },

@@ -2,7 +2,6 @@ import { Book } from "@prisma/client";
 import Button from "../Button";
 import { ROUTES } from "../../utils/routes";
 import Link from "next/link";
-import Image from "next/image";
 
 interface ICard extends Book {
   setIsOpen(x: boolean): void;
@@ -29,16 +28,13 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <div className="h-full border border-solid border-card-border text-center">
-      {/* <img src={imagePath} alt="image" className="w-full" /> */}
-      <Image
+      <img
         src={imagePath ?? ""}
-        width={500}
-        height={500}
         alt="Изображение книги"
-        className="w-full"
+        className="w-full h-[50%] object-contain"
       />
-      <div className="flex flex-col gap-6	text-center pt-2.5 px-2.5 pb-5">
-        <a href={`${ROUTES.BOOKS}/${id}`} className="text-lg">
+      <div className="flex flex-col gap-4	text-center pt-2.5 px-2.5 pb-5">
+        <a href={`${ROUTES.BOOKS}/${id}`} className="text-l">
           {title}
         </a>
         <div className="text-2xl font-bold">{price} РУБ.</div>
