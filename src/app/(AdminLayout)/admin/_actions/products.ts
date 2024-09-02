@@ -5,6 +5,7 @@ import { ROUTES } from "../../../../utils/routes";
 import { bookDatabase } from "../../../../utils/workDb";
 import { getStorage, ref as firebaseRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import app from "../../../../lib/firebase";
+import { revalidatePath } from "next/cache";
 
 const storage = getStorage(app)
 
@@ -36,6 +37,7 @@ export async function addProduct(_: unknown, formData: FormData) {
   await uploadBytes(imageRef, data.imagePath)
   const url = await getDownloadURL(imageRef)
   await bookDatabase.createNewBook(data, url) 
+  revalidatePath(ROUTES.PRODUCTS)
   redirect(ROUTES.PRODUCTS);
 }
 
@@ -65,11 +67,13 @@ export async function editProduct(
     imageName = data.imagePath?.name as string
   }
   await bookDatabase.updateBook(id, data, imagePath, imageName as string)
+  revalidatePath(ROUTES.PRODUCTS)
   redirect(ROUTES.PRODUCTS);
 }
 
 export async function toggleAvailability(id: string, canPurchase: boolean) {
   await bookDatabase.updateCanPurchaseBook(id, canPurchase)
+  revalidatePath(ROUTES.PRODUCTS)
 }
 
 export async function deleteProduct(id: string) {
@@ -79,4 +83,5 @@ export async function deleteProduct(id: string) {
     const imageRef = firebaseRef(storage, `products/${product.imageName}`)
     await deleteObject(imageRef)
   }
+  revalidatePath(ROUTES.PRODUCTS)
 }

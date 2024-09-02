@@ -1,6 +1,5 @@
-import { Book } from "@prisma/client";
 import ShopContainer from "./_components/ShopContainer";
-import { bookDatabase } from "../../../../utils/workDb";
+import { IMongoBook } from "../../../../models/Book";
 
 // async function funcRender(p1, p2) {
 //   "use server";
@@ -8,18 +7,9 @@ import { bookDatabase } from "../../../../utils/workDb";
 // }
 
 export default async function Page() {
-  const products: Partial<Book>[] = await bookDatabase.getAllBooks({
-    select: {
-      id: true,
-      title: true,
-      price: true,
-      canPurchase: true,
-      imagePath: true,
-      widgetGC: true,
-    },
-    where: { canPurchase: true },
-    orderBy: { title: "asc" },
-  });
+  const res = await fetch(process.env.URL + "/api/books");
+  const products: IMongoBook[] = await res.json();
+
   return (
     // <ModalProvider render={funcRender}></ModalProvider>
     // <ShopContainer>

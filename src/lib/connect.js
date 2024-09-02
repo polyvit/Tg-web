@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   if (mongoose.connections[0].readyState) {
-    // Use current db connection
     console.log("current db used");
     return;
   }

@@ -9,7 +9,7 @@ export async function GET(
   const bookId = params.bookId 
   await connectDB()
     try {
-        const book = await bookDatabase.findMongoBookById(bookId)
+        const book = await bookDatabase.findBookById(bookId)
         return NextResponse.json(book);
     } catch (err) {
         return NextResponse.json({ error: err.message })

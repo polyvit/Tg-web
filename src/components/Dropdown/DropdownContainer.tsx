@@ -6,25 +6,25 @@ import {
   ToggleAvailabilityDropItem,
   DeleteDropItem,
 } from "../../app/(AdminLayout)/admin/_components/TableActions";
-import { Book } from "@prisma/client";
+import { IMongoBook } from "../../models/Book";
 
-const DropdownContainer = ({ product }: { product: Partial<Book> }) => {
+const DropdownContainer = ({ product }: { product: Partial<IMongoBook> }) => {
   const [isOpen, setIsOpen] = useState(false);
   const productsTableMenu = {
     above: [
-      <ChangeDropItem id={product.id} key={`change-${product.id}`} />,
+      <ChangeDropItem id={product._id} key={`change-${product._id}`} />,
       <ToggleAvailabilityDropItem
-        id={product.id}
-        key={`available-${product.id}`}
+        id={product._id}
+        key={`available-${product._id}`}
         canPurchase={product.canPurchase}
         setIsOpen={setIsOpen}
       />,
     ],
     below: [
       <DeleteDropItem
-        id={product.id}
+        id={product._id}
         setIsOpen={setIsOpen}
-        key={`delete-${product.id}`}
+        key={`delete-${product._id}`}
       />,
     ],
   };

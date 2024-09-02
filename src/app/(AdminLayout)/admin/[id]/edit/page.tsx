@@ -1,35 +1,27 @@
 import React from "react";
 import PageHeader from "../../../../_components/PageHeader";
 import ProductForm from "../../_components/ProductForm";
-import { bookDatabase } from "../../../../../utils/workDb";
+import { IMongoBook } from "../../../../../models/Book.ts";
+
+export const revalidate = 10;
 
 export default async function EditPage({ params }: { params: { id: string } }) {
   const res = await fetch(process.env.URL + "/api/books" + `/${params.id}`);
-  const mongoBook = await res.json();
-  console.log("mongoBook", mongoBook);
-  const product = await bookDatabase.findBookById(params.id);
+  const mongoBook: IMongoBook = await res.json();
 
   return (
     <>
       <PageHeader text="Отредактировать данные" />
-      <ProductForm product={product} />
+      <ProductForm product={mongoBook} />
     </>
   );
 }
 
 export async function generateStaticParams() {
-  const books = await bookDatabase.getAllBooks({
-    select: {
-      id: true,
-      title: true,
-      price: true,
-      canPurchase: true,
-      imagePath: true,
-      widgetGC: true,
-    },
-  });
+  const res = await fetch(process.env.URL + "/api/books");
+  const books: IMongoBook[] = await res.json();
 
   return books.map((book) => ({
-    id: book.id,
+    id: book._id,
   }));
 }

@@ -4,15 +4,15 @@ import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
 import { addProduct, editProduct } from "../_actions/products";
 import { useFormState, useFormStatus } from "react-dom";
-import { Book } from "@prisma/client";
+import { IMongoBook } from "../../../../models/Book.ts";
 
 function ProductForm({
   product,
 }: {
-  product?: Omit<Book, "canPurchase"> | null;
+  product?: Omit<IMongoBook, "canPurchase"> | null;
 }) {
   const [errors, actionFunction] = useFormState(
-    product ? editProduct.bind(null, product.id) : addProduct,
+    product ? editProduct.bind(null, product._id) : addProduct,
     {}
   );
   const inputs = [

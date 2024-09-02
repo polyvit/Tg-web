@@ -1,6 +1,17 @@
 import mongoose from "mongoose";
 
-const bookSchema = new mongoose.Schema({
+export interface IMongoBook {
+  _id: string;
+  title: string;
+  price: number;
+  imagePath: string;
+  imageName: string;
+  about: string;
+  widgetGC: string;
+  canPurchase?: boolean;
+}
+
+const bookSchema = new mongoose.Schema<IMongoBook>({
   title: { type: String, required: true },
   price: { type: Number, required: true },
   imagePath: { type: String, required: true },
@@ -10,4 +21,4 @@ const bookSchema = new mongoose.Schema({
   canPurchase: { type: Boolean, default: true },
 });
 
-export default mongoose.models.Book || mongoose.model("Book", bookSchema);
+export default mongoose.models.Book || mongoose.model<IMongoBook>("Book", bookSchema);

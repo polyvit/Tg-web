@@ -3,23 +3,20 @@ import Image from "next/image";
 import DropdownContainer from "../../../../components/Dropdown/DropdownContainer";
 import doneIcon from "../../../../../public/done.svg";
 import crossIcon from "../../../../../public/cross.svg";
-import { Book } from "@prisma/client";
-import { bookDatabase } from "../../../../utils/workDb";
+import { IMongoBook } from "../../../../models/Book.ts";
 
 async function ProductsTable() {
   const res = await fetch(process.env.URL + "/api/books");
-  const mongoProducts = await res.json();
-  console.log("mongoProducts", mongoProducts);
-  const products: Partial<Book>[] = await bookDatabase.getAllBooks({
-    select: {
-      id: true,
-      title: true,
-      price: true,
-      canPurchase: true,
-      imagePath: true,
-    },
-    orderBy: { title: "asc" },
-  });
+  const products: IMongoBook[] = await res.json();
+  //   select: {
+  //     id: true,
+  //     title: true,
+  //     price: true,
+  //     canPurchase: true,
+  //     imagePath: true,
+  //   },
+  //   orderBy: { title: "asc" },
+  // });
 
   const result = !products.length ? (
     <tbody>
@@ -33,7 +30,7 @@ async function ProductsTable() {
     <tbody>
       {products.map((product) => (
         <tr
-          key={product.id}
+          key={product._id}
           className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600"
         >
           <td className="px-6 py-4">

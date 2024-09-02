@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button";
-import { Book } from "@prisma/client";
+import { IMongoBook } from "../../models/Book";
 
 const subtitle = "text-custom-red mb-2.5 font-normal";
 
@@ -9,7 +9,7 @@ const BookInfo = ({
   setCurrentModal,
   setIsOpen,
 }: {
-  data: Book;
+  data: IMongoBook;
   setCurrentModal(str: string): void;
   setIsOpen(x: boolean): void;
 }) => {

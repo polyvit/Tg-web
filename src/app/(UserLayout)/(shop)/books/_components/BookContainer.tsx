@@ -2,9 +2,9 @@
 import { useState } from "react";
 import Modal from "../../../../../components/Modal";
 import BookInfo from "../../../../../components/BookInfo/BookInfo";
-import { Book } from "@prisma/client";
+import { IMongoBook } from "../../../../../models/Book";
 
-const BookContainer = ({ product }: { product: Book }) => {
+const BookContainer = ({ product }: { product: IMongoBook }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentModal, setCurrentModal] = useState("");
 

@@ -1,25 +1,17 @@
-import { Book } from "@prisma/client";
-import { bookDatabase } from "../../../../../utils/workDb";
 import BookContainer from "../_components/BookContainer";
+import { IMongoBook } from "../../../../../models/Book";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const product = (await bookDatabase.findBookById(params.id)) as Book;
+  const res = await fetch(process.env.URL + "/api/books" + `/${params.id}`);
+  const product: IMongoBook = await res.json();
   return <BookContainer product={product} />;
 }
 
 export async function generateStaticParams() {
-  const books = await bookDatabase.getAllBooks({
-    select: {
-      id: true,
-      title: true,
-      price: true,
-      canPurchase: true,
-      imagePath: true,
-      widgetGC: true,
-    },
-  });
+  const res = await fetch(process.env.URL + "/api/books");
+  const books: IMongoBook[] = await res.json();
 
   return books.map((book) => ({
-    id: book.id,
+    id: book._id,
   }));
 }
