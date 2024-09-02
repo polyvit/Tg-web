@@ -4,6 +4,9 @@ import ProductForm from "../../_components/ProductForm";
 import { bookDatabase } from "../../../../../utils/workDb";
 
 export default async function EditPage({ params }: { params: { id: string } }) {
+  const res = await fetch(process.env.URL + "/api/books" + `/${params.id}`);
+  const mongoBook = await res.json();
+  console.log("mongoBook", mongoBook);
   const product = await bookDatabase.findBookById(params.id);
 
   return (

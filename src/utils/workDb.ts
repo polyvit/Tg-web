@@ -1,4 +1,5 @@
 import db from "../db/db";
+import Book from "../models/Book";
 
 interface IData {
   title: string;
@@ -56,7 +57,47 @@ class BookDatabase {
   async getAllBooks(settings: ISettings) {
     return await db.book.findMany(settings)
   }
-
+  ///////////////// Mongo /////////////////
+  async createNewMongoBook(data: IData, imagePath: string) {
+    const newBook = new Book({
+      title: data.title,
+      price: data.price,
+      imagePath: imagePath,
+      imageName: data.imagePath?.name,
+      about: data.about,
+      widgetGC: data.widgetGC,
+    });
+    await newBook.save();
+  }
+  async updateMongoBook(id: string, data: IEditedData, imagePath: string, imageName: string) {
+    await Book.findByIdAndUpdate(id, {
+        title: data.title,
+        price: data.price,
+        imagePath: imagePath,
+        imageName: imageName,
+        about: data.about,
+        widgetGC: data.widgetGC,
+      }, function (err: any) {
+    if (err){
+        console.log(err)
+    } else {
+      console.log("findByIdAndUpdate was successful")
+    }
+})
+  }
+  async deleteMongoBookById(id: string) {
+    return await Book.findByIdAndDelete(id)
+  }
+  async updateCanPurchaseMongoBook(id: string, canPurchase: boolean) {
+    console.log("id in updateCanPurchaseBook", id)
+    await Book.findOneAndUpdate({id}, {canPurchase})
+  }
+  async getAllMongoBooks() {
+    return await Book.find()
+  }
+  async findMongoBookById(id: string) {
+    return await Book.findById(id)
+  }
 }
 
 export const bookDatabase = new BookDatabase();

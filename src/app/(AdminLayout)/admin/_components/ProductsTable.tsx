@@ -7,6 +7,9 @@ import { Book } from "@prisma/client";
 import { bookDatabase } from "../../../../utils/workDb";
 
 async function ProductsTable() {
+  const res = await fetch(process.env.URL + "/api/books");
+  const mongoProducts = await res.json();
+  console.log("mongoProducts", mongoProducts);
   const products: Partial<Book>[] = await bookDatabase.getAllBooks({
     select: {
       id: true,
