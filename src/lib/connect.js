@@ -5,10 +5,7 @@ const connectDB = async () => {
     console.log("current db used");
     return;
   }
-  await mongoose.connect(process.env.MONGO_DATABASE_URL, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-  });
+  await mongoose.connect(process.env.MONGO_DATABASE_URL);
   console.log("Db connected!!");
 };
 

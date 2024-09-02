@@ -12,6 +12,6 @@ export async function GET(
         const book = await bookDatabase.findBookById(bookId)
         return NextResponse.json(book);
     } catch (err) {
-        return NextResponse.json({ error: err.message })
+        return NextResponse.json({status: 400})
     }
 }

@@ -8,7 +8,7 @@ export async function GET() {
         const books = await bookDatabase.getAllBooks()
         return NextResponse.json(books);
     } catch (err) {
-        return NextResponse.json({ error: err.message })
+        return NextResponse.json({status: 400})
     }
 }
  

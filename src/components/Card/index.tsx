@@ -13,6 +13,7 @@ type CardProps = Partial<ICard>;
 const Card: React.FC<CardProps> = ({
   _id,
   imagePath,
+  imageName,
   title,
   price,
   widgetGC,
@@ -30,7 +31,7 @@ const Card: React.FC<CardProps> = ({
     <div className="h-full border border-solid border-card-border text-center">
       <img
         src={imagePath ?? ""}
-        alt="Изображение книги"
+        alt={imageName ?? "Изображение книги"}
         className="w-full h-[50%] object-contain"
       />
       <div className="flex flex-col gap-4	text-center pt-2.5 px-2.5 pb-5">
