@@ -4,7 +4,7 @@ import { IMongoBook } from "../../../../../models/Book";
 export const revalidate = 360;
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const res = await fetch(process.env.URL + "/api/books" + `/${params.id}`);
+  const res = await fetch(process.env.APP_URL + "/api/books" + `/${params.id}`);
   const product: IMongoBook = await res.json();
   return <BookContainer product={product} />;
 }

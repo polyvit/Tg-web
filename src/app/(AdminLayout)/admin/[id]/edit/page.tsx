@@ -6,7 +6,7 @@ import { IMongoBook } from "../../../../../models/Book.ts";
 export const revalidate = 10;
 
 export default async function EditPage({ params }: { params: { id: string } }) {
-  const res = await fetch(process.env.URL + "/api/books" + `/${params.id}`);
+  const res = await fetch(process.env.APP_URL + "/api/books" + `/${params.id}`);
   const mongoBook: IMongoBook = await res.json();
 
   return (

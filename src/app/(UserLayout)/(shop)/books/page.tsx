@@ -7,7 +7,7 @@ import { IMongoBook } from "../../../../models/Book";
 // }
 
 export default async function Page() {
-  const res = await fetch(process.env.URL + "/api/books");
+  const res = await fetch(process.env.APP_URL + "/api/books");
   const products: IMongoBook[] = await res.json();
 
   return (

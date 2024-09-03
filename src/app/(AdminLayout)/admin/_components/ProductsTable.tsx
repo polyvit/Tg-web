@@ -6,7 +6,7 @@ import crossIcon from "../../../../../public/cross.svg";
 import { IMongoBook } from "../../../../models/Book.ts";
 
 async function ProductsTable() {
-  const res = await fetch(process.env.URL + "/api/books");
+  const res = await fetch(process.env.APP_URL + "/api/books");
   const products: IMongoBook[] = await res.json();
   //   select: {
   //     id: true,
