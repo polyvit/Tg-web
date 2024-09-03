@@ -1,5 +1,6 @@
 import ShopContainer from "./_components/ShopContainer";
 import { IMongoBook } from "../../../../models/Book";
+import { bookDatabase } from "../../../../utils/workDb";
 
 // async function funcRender(p1, p2) {
 //   "use server";
@@ -7,8 +8,10 @@ import { IMongoBook } from "../../../../models/Book";
 // }
 
 export default async function Page() {
-  const res = await fetch(process.env.APP_URL + "/api/books");
-  const products: IMongoBook[] = await res.json();
+  // const res = await fetch(process.env.APP_URL + "/api/books");
+  // const products: IMongoBook[] = await res.json();
+
+  const products: IMongoBook[] = await bookDatabase.getAllBooks();
 
   return (
     // <ModalProvider render={funcRender}></ModalProvider>

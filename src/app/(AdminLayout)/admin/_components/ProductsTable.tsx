@@ -4,10 +4,11 @@ import DropdownContainer from "../../../../components/Dropdown/DropdownContainer
 import doneIcon from "../../../../../public/done.svg";
 import crossIcon from "../../../../../public/cross.svg";
 import { IMongoBook } from "../../../../models/Book.ts";
+import { bookDatabase } from "../../../../utils/workDb.ts";
 
 async function ProductsTable() {
-  const res = await fetch(process.env.APP_URL + "/api/books");
-  const products: IMongoBook[] = await res.json();
+  // const res = await fetch(process.env.APP_URL + "/api/books");
+  // const products: IMongoBook[] = await res.json();
   //   select: {
   //     id: true,
   //     title: true,
@@ -17,6 +18,8 @@ async function ProductsTable() {
   //   },
   //   orderBy: { title: "asc" },
   // });
+
+  const products: IMongoBook[] = await bookDatabase.getAllBooks();
 
   const result = !products.length ? (
     <tbody>
