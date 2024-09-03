@@ -17,11 +17,11 @@ export default async function EditPage({ params }: { params: { id: string } }) {
   );
 }
 
-export async function generateStaticParams() {
-  const res = await fetch(process.env.URL + "/api/books");
-  const books: IMongoBook[] = await res.json();
+// export async function generateStaticParams() {
+//   const res = await fetch(process.env.URL + "/api/books");
+//   const books: IMongoBook[] = await res.json();
 
-  return books.map((book) => ({
-    id: book._id,
-  }));
-}
+//   return books.map((book) => ({
+//     id: book._id,
+//   }));
+// }
