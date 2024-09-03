@@ -1,3 +1,4 @@
+import connectDB from "../lib/connect.js";
 import Book from "../models/Book.ts";
 
 interface IData {
@@ -41,9 +42,11 @@ class BookDatabase {
     await Book.findOneAndUpdate({_id: id}, {canPurchase})
   }
   async getAllBooks() {
+    await connectDB()
     return await Book.find()
   }
   async findBookById(id: string) {
+    await connectDB()
     return await Book.findById(id)
   }
 }
