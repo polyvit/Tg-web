@@ -6,19 +6,9 @@ import crossIcon from "../../../../../public/cross.svg";
 import { IMongoBook } from "../../../../models/Book.ts";
 import { bookDatabase } from "../../../../utils/workDb.ts";
 
-async function ProductsTable() {
-  // const res = await fetch(process.env.APP_URL + "/api/books");
-  // const products: IMongoBook[] = await res.json();
-  //   select: {
-  //     id: true,
-  //     title: true,
-  //     price: true,
-  //     canPurchase: true,
-  //     imagePath: true,
-  //   },
-  //   orderBy: { title: "asc" },
-  // });
+export const revalidate = 60;
 
+async function ProductsTable() {
   const products: IMongoBook[] = await bookDatabase.getAllBooks();
 
   const result = !products.length ? (

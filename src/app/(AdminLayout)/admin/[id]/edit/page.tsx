@@ -7,8 +7,6 @@ import { bookDatabase } from "../../../../../utils/workDb.ts";
 export const revalidate = 10;
 
 export default async function EditPage({ params }: { params: { id: string } }) {
-  // const res = await fetch(process.env.APP_URL + "/api/books" + `/${params.id}`);
-  // const mongoBook: IMongoBook = await res.json();
   const mongoBook: IMongoBook = await bookDatabase.findBookById(params.id);
 
   return (

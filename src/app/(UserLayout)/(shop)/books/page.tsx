@@ -7,10 +7,9 @@ import { bookDatabase } from "../../../../utils/workDb";
 //   return <ShopFront p1={p1} p2={p2} />;
 // }
 
-export default async function Page() {
-  // const res = await fetch(process.env.APP_URL + "/api/books");
-  // const products: IMongoBook[] = await res.json();
+export const revalidate = 60;
 
+export default async function Page() {
   const products: IMongoBook[] = await bookDatabase.getAllBooks();
 
   return (
