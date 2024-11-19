@@ -46,6 +46,12 @@ function ProductForm({
       label: "Картинка",
     },
     {
+      inputType: "file",
+      id: "filePath",
+      name: "filePath",
+      label: "Файл",
+    },
+    {
       id: "widgetGC",
       name: "widgetGC",
       placeholder: "Прикрепите ссылку на виджет геткурса",

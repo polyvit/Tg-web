@@ -17,6 +17,7 @@ const addSchema = z.object({
   title: z.string().min(1, { message: "Это поле не должно быть пустым" }),
   price: z.coerce.number().int().gte(1, { message: "Введите цифру больше 0" }),
   imagePath: imageSchema.refine((file) => file.size > 0, "Обязательное поле"),
+  filePath: z.custom<File>().refine((file) => file.size > 0, "Обязательное поле"),
   about: z.string().min(1, { message: "Это поле не должно быть пустым" }),
   widgetGC: z
     .string()
@@ -33,10 +34,15 @@ export async function addProduct(_: unknown, formData: FormData) {
     return result.error?.formErrors.fieldErrors;
   }
   const data = result.data;
+
   const imageRef = firebaseRef(storage, `products/${data.imagePath.name}`)
   await uploadBytes(imageRef, data.imagePath)
-  const url = await getDownloadURL(imageRef)
-  await bookDatabase.createNewBook(data, url) 
+  const imageUrl = await getDownloadURL(imageRef)
+  const fileRef = firebaseRef(storage, `files/${data.filePath.name}`);
+  await uploadBytes(fileRef, data.filePath);
+  const fileUrl = await getDownloadURL(fileRef)
+
+  await bookDatabase.createNewBook(data, imageUrl, fileUrl) 
   revalidatePath(ROUTES.PRODUCTS)
   redirect(ROUTES.PRODUCTS);
 }
@@ -66,7 +72,24 @@ export async function editProduct(
     imagePath = url
     imageName = data.imagePath?.name as string
   }
-  await bookDatabase.updateBook(id, data, imagePath, imageName as string)
+
+  let filePath = product.filePath;
+  let fileName = product.fileName;
+
+  if (data.filePath != null && data.filePath != undefined && data.filePath.size > 0) {
+    let fileRef;
+    if (product.fileName) {
+      fileRef = firebaseRef(storage, `files/${fileName}`)
+      await deleteObject(fileRef)
+    } else {
+      fileRef = firebaseRef(storage, `files/${data.filePath.name}`)
+    }
+    await uploadBytes(fileRef, data.filePath!)
+    const url = await getDownloadURL(fileRef)
+    filePath = url
+    fileName = data.filePath?.name as string
+  }
+  await bookDatabase.updateBook(id, data, imagePath, imageName as string, filePath, fileName as string)
   revalidatePath(ROUTES.PRODUCTS)
   redirect(ROUTES.PRODUCTS);
 }

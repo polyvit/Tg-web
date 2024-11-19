@@ -40,6 +40,14 @@ async function ProductsTable() {
               alt="Photo"
             />
           </td>
+          <td className="p-4">
+            <a href={product.filePath ?? "/"} target="_blank">
+              <img
+                className="w-4 md:w-8 hover:w-5 md:hover:w-9 duration-100 cursor-pointer"
+                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABvUlEQVR4nO3YzStEURjH8e94yUshC0JWNiZ/gbJRbGxlTWQnWQplpaztpZQ/wB+grOykGGVP7GSFvD469UzdTvOCueecO9P51enOmTv35TPnOd0zA+UjDtsNMIinSKNgRJur83rDiGNIIbHtd3Adb5A+4MrHyIhjCL4w4gHiBSOeIM4x4hHiFCOeISZOMCEgTjChIKljQkJSxYSGpIbxsdb6ayvUcsG0U+uqOTOQ/0YihDgiTiKxtIil5SQSS4vqpTUFrAIbwDwwnNg3CizrvkVgzDp2Ali32lCoEbmwnrovijPZ0vc+dPsN7CSO3S7x1B4PCfkCmoFp4FMXd0nILDAAXGp/xoKsACPa2kJDijnTb77bgphMav/YgsyleD+pQc6Bd6C1BMSM2ivwkGVITm/YjMaJ7rMhJndafrkE5Cgx2VtCQsxnnnV7D+QrQG4V3lRmsreHhJhR2AWWgK7EPhtiRuENeNR+EbIA9GrLZWWOUAGS1/5plufIbyB72l+rV8g+cKivr4HOeoNsJs7xBBzovyJkEVItHUAP6UTi6pf4w8pJJJYWsbScRGJpEUvLSSSWFg1WWpKxRkNDfgCdI9+VFzhUdwAAAABJRU5ErkJggg=="
+              />
+            </a>
+          </td>
           <td className="px-6 py-4">{product.title}</td>
           <td className="px-6 py-4">{product.price} руб.</td>
           <td className="px-6 py-4 text-right">
@@ -60,6 +68,9 @@ async function ProductsTable() {
             </th>
             <th scope="col" className="px-6 py-3">
               Изображение
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Файл
             </th>
             <th scope="col" className="px-6 py-3">
               Название товара

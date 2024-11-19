@@ -6,6 +6,8 @@ export interface IMongoBook {
   price: number;
   imagePath: string;
   imageName: string;
+  filePath: string;
+  fileName: string;
   about: string;
   widgetGC: string;
   canPurchase?: boolean;
@@ -16,6 +18,8 @@ const bookSchema = new mongoose.Schema<IMongoBook>({
   price: { type: Number, required: true },
   imagePath: { type: String, required: true },
   imageName: { type: String, required: true },
+  filePath: { type: String, required: true },
+  fileName: { type: String, required: true },
   about: { type: String, required: true },
   widgetGC: { type: String, required: true },
   canPurchase: { type: Boolean, default: true },
