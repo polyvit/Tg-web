@@ -1,13 +1,17 @@
-import React, { useEffect } from "react";
+"use client";
+import React, { ReactNode, useEffect } from "react";
 
 interface IModalProps {
-  src: string;
+  children: ReactNode;
   setIsOpen(x: boolean): void;
+  className: string;
 }
 
-const Modal: React.FC<IModalProps> = ({ src, setIsOpen }) => {
+const Modal: React.FC<IModalProps> = ({ children, setIsOpen, className }) => {
   useEffect(() => {
-    document.querySelector("iframe")?.scrollBy(0, 300);
+    if (document.querySelector("iframe")) {
+      document.querySelector("iframe")?.scrollBy(0, 300);
+    }
   }, []);
 
   return (
@@ -16,11 +20,11 @@ const Modal: React.FC<IModalProps> = ({ src, setIsOpen }) => {
         <div className="h-full truncate">
           <button
             onClick={() => setIsOpen(false)}
-            className="absolute right-2.5	text-5xl"
+            className="absolute right-2.5 text-5xl"
           >
             &times;
           </button>
-          <iframe src={src} className="w-full h-full truncate mt-10"></iframe>
+          {children}
         </div>
       </div>
     </div>

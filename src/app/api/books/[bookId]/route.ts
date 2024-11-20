@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import connectDB from "../../../../lib/connect";
-import { bookDatabase } from "../../../../utils/workDb";
+import { bookDatabase } from "../../../../db/bookDb";
 // import { IMongoBook } from "../../../../models/Book";
 
 // export async function generateStaticParams() {

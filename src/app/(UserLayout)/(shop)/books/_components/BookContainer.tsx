@@ -17,7 +17,14 @@ const BookContainer = ({ product }: { product: IMongoBook }) => {
           setIsOpen={setIsOpen}
         />
       </div>
-      {isOpen && <Modal src={currentModal} setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <Modal setIsOpen={setIsOpen}>
+          <iframe
+            src={currentModal}
+            className="w-full h-full truncate mt-10"
+          ></iframe>
+        </Modal>
+      )}
     </>
   );
 };

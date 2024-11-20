@@ -2,7 +2,7 @@ import React from "react";
 import PageHeader from "../../../../_components/PageHeader";
 import ProductForm from "../../_components/ProductForm";
 import { IMongoBook } from "../../../../../models/Book.ts";
-import { bookDatabase } from "../../../../../utils/workDb.ts";
+import { bookDatabase } from "../../../../../db/bookDb.ts";
 
 export const revalidate = 10;
 

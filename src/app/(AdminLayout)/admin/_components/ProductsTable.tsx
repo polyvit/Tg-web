@@ -4,7 +4,7 @@ import DropdownContainer from "../../../../components/Dropdown/DropdownContainer
 import doneIcon from "../../../../../public/done.svg";
 import crossIcon from "../../../../../public/cross.svg";
 import { IMongoBook } from "../../../../models/Book.ts";
-import { bookDatabase } from "../../../../utils/workDb.ts";
+import { bookDatabase } from "../../../../db/bookDb.ts";
 
 export const revalidate = 60;
 

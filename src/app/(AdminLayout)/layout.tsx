@@ -26,6 +26,7 @@ export default function RootLayout({
             <div className="w-full pb-[20px]">
               <Header logoLink={ROUTES.ADMIN}>
                 <NavLink href={ROUTES.PRODUCTS}>Продукты</NavLink>
+                <NavLink href={ROUTES.FORMS}>Формы</NavLink>
               </Header>
               <div>{children}</div>
             </div>

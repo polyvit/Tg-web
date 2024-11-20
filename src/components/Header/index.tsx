@@ -15,7 +15,7 @@ const Header = ({
       <Link href={logoLink}>
         <img src={logo.src} alt="logo" />
       </Link>
-      {children}
+      <div className="flex gap-4">{children}</div>
     </div>
   );
 };

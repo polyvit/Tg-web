@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import Input from "../../../../components/Input";
-import Button from "../../../../components/Button";
 import { addProduct, editProduct } from "../_actions/products";
-import { useFormState, useFormStatus } from "react-dom";
+import { useFormState } from "react-dom";
 import { IMongoBook } from "../../../../models/Book.ts";
+import SubmitButton from "../../../../components/SubmitButton/index.tsx";
 
 function ProductForm({
   product,
@@ -78,17 +78,6 @@ function ProductForm({
       ))}
       <SubmitButton />
     </form>
-  );
-}
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button
-      type="submit"
-      disabled={pending}
-      text={pending ? "Отправляем" : "Отправить"}
-    />
   );
 }
 

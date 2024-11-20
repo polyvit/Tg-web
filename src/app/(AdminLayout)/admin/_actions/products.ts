@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { notFound, redirect } from "next/navigation";
 import { ROUTES } from "../../../../utils/routes";
-import { bookDatabase } from "../../../../utils/workDb";
+import { bookDatabase } from "../../../../db/bookDb";
 import { getStorage, ref as firebaseRef, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
 import app from "../../../../lib/firebase";
 import { revalidatePath } from "next/cache";

@@ -1,6 +1,6 @@
 import BookContainer from "../_components/BookContainer";
 import { IMongoBook } from "../../../../../models/Book";
-import { bookDatabase } from "../../../../../utils/workDb";
+import { bookDatabase } from "../../../../../db/bookDb";
 
 export const revalidate = 60;
 

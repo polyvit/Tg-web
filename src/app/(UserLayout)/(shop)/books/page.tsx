@@ -1,6 +1,6 @@
 import ShopContainer from "./_components/ShopContainer";
 import { IMongoBook } from "../../../../models/Book";
-import { bookDatabase } from "../../../../utils/workDb";
+import { bookDatabase } from "../../../../db/bookDb";
 
 // async function funcRender(p1, p2) {
 //   "use server";
