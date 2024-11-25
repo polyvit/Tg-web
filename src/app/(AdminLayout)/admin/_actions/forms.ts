@@ -24,3 +24,7 @@ export async function CreateForm(_: unknown, formData: FormData) {
 export async function GetAllForms() {
   return await formDatabase.getAllForms()
 }
+
+export async function GetFormById(id: string) {
+  return await formDatabase.getFormById(id)
+}

@@ -20,6 +20,10 @@ class FormDatabase {
     await connectDB()
     return await Form.find()
   }
+  async getFormById(id: string) {
+    await connectDB()
+    return await Form.findById(id)
+  }
 }
 
 export const formDatabase = new FormDatabase();
