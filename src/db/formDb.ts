@@ -13,7 +13,12 @@ class FormDatabase {
       name: data.name,
       description: data.description ? data.description : "Нет описания",
     });
-    await newForm.save();
+    const result = await newForm.save();
+    return result.id
+  }
+  async getAllForms() {
+    await connectDB()
+    return await Form.find()
   }
 }
 

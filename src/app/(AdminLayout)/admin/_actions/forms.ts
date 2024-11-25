@@ -9,14 +9,18 @@ const formSchema = z.object({
   description: z.string().optional(),
 });
 
-export async function addForm(_: unknown, formData: FormData) {
+export async function CreateForm(_: unknown, formData: FormData) {
   const result = formSchema.safeParse(Object.fromEntries(formData.entries()));
   if (result.success === false) {
-    return {payload: result.error?.formErrors.fieldErrors};
+    return {status: "failure", payload: result.error?.formErrors.fieldErrors};
   }
   const data = result.data;
 
-  await formDatabase.createNewForm(data);
+  const formId = await formDatabase.createNewForm(data);
   revalidatePath(ROUTES.FORMS);
-  return {payload: "success"}
+  return {status: "success", payload: formId}
+}
+
+export async function GetAllForms() {
+  return await formDatabase.getAllForms()
 }

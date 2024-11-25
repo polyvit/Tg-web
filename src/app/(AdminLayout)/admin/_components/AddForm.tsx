@@ -1,17 +1,26 @@
 import { useFormState } from "react-dom";
 import SubmitButton from "../../../../components/SubmitButton";
 import Input from "../../../../components/Input";
-import { addForm } from "../_actions/forms";
+import { CreateForm } from "../_actions/forms";
 import { useEffect } from "react";
 
 function AddForm({ setIsOpen }: { setIsOpen(x: boolean): void }) {
-  const [data, actionFunction] = useFormState(addForm, { payload: "" });
+  const [data, actionFunction] = useFormState(CreateForm, {
+    status: "",
+    payload: "",
+  });
 
   useEffect(() => {
-    if (data.payload == "success") {
+    if (data.status == "success") {
       setIsOpen(false);
     }
-  }, [data.payload]);
+  }, [data.status]);
+
+  // async function onSubmit(values) {
+  //   try {
+  //     const formId = await CreateForm(values);
+  //   } catch (err) {}
+  // }
 
   const inputs = [
     {
@@ -38,6 +47,7 @@ function AddForm({ setIsOpen }: { setIsOpen(x: boolean): void }) {
           key={input.id}
           {...input}
           errorMessage={
+            data.status == "failure" &&
             data.payload &&
             data.payload[input.name as keyof typeof data.payload]
               ? data.payload[input.name as keyof typeof data.payload]![0]
