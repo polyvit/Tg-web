@@ -3,6 +3,7 @@ import { DndContext } from "@dnd-kit/core";
 import { IMongoForm } from "../../models/Form";
 import Builder from "../Builder";
 import Button from "../Button";
+import DragOverlayWrapper from "../Builder/DragOverlayWrapper";
 
 const FormConstructor = ({ form }: { form: IMongoForm }) => {
   return (
@@ -23,12 +24,9 @@ const FormConstructor = ({ form }: { form: IMongoForm }) => {
           <Builder />
         </div>
       </main>
+      <DragOverlayWrapper />
     </DndContext>
   );
 };
 
 export default FormConstructor;
-
-// bg-[url(/paper.svg)]
-// Wrap DndContext
-// DragOverlayWrapper
