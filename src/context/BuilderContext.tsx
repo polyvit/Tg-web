@@ -5,12 +5,14 @@ import { FormElementInstance } from "../components/Builder/FormElements";
 type BuilderContextType = {
   elements: FormElementInstance[];
   addElement: (index: number, element: FormElementInstance) => void;
+  removeElement: (id: string) => void;
 };
 
 export const BuilderContext = createContext<BuilderContextType | null>(null);
 
 const BuilderContextProvider = ({ children }: { children: ReactNode }) => {
   const [elements, setElements] = useState<FormElementInstance[]>([]);
+
   const addElement = (index: number, element: FormElementInstance) => {
     setElements((prev) => {
       const newElements = [...prev];
@@ -19,8 +21,12 @@ const BuilderContextProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const removeElement = (id: string) => {
+    setElements((prev) => prev.filter((el) => el.id !== id));
+  };
+
   return (
-    <BuilderContext.Provider value={{ elements, addElement }}>
+    <BuilderContext.Provider value={{ elements, addElement, removeElement }}>
       {children}
     </BuilderContext.Provider>
   );

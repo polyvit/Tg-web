@@ -9,6 +9,9 @@ import {
   FormElements,
 } from "./FormElements";
 import { idGenerator } from "../../utils/isGenerator";
+import { useState } from "react";
+import Image from "next/image";
+import cn from "classnames";
 
 const Builder = () => {
   const { elements, addElement } = useBuilder();
@@ -67,8 +70,44 @@ const Builder = () => {
 };
 
 const BuilderElement = ({ element }: { element: FormElementInstance }) => {
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const { removeElement } = useBuilder();
+
   const Element = FormElements[element.type].builderComponent;
-  return <Element elementInstance={element} />;
+
+  return (
+    <div
+      className="relative h-[100px] flex flex-col hover:cursor-pointer rounded-md"
+      onMouseEnter={() => setIsMouseOver(true)}
+      onMouseLeave={() => setIsMouseOver(false)}
+    >
+      <div />
+      <div />
+      {isMouseOver && (
+        <>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse">
+            <p className="text-sm">Нажмите для заполнения</p>
+          </div>
+          <div className="absolute right-0 h-full rounded-md">
+            <button
+              onClick={() => removeElement(element.id)}
+              className="h-full rounded-md rounded-l-none bg-red-500 p-2 hover:bg-red-700"
+            >
+              <Image src="/trash.svg" alt="удалить" height={30} width={30} />
+            </button>
+          </div>
+        </>
+      )}
+      <div
+        className={cn(
+          "flex w-full h-[100px] rounded-md items-center px-4 py-2 pointer-events-none bg-gray-100 text-black opacity-100",
+          { "opacity-20": isMouseOver }
+        )}
+      >
+        <Element elementInstance={element} />
+      </div>
+    </div>
+  );
 };
 
 export default Builder;

@@ -22,7 +22,7 @@ const SidebarElement = ({ formElement }: { formElement: FormElement }) => {
       className={cn(
         "text-sm font-medium flex items-center bg-white hover:bg-red-300 rounded-lg text-center flex-col justify-center w-full h-20 cursor-grab",
         {
-          isDragging: "ring-2 ring-rose-700",
+          "ring-2 ring-rose-700": isDragging,
         }
       )}
       {...listeners}
