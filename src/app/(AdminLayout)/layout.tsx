@@ -1,5 +1,6 @@
 import Header from "../../components/Header";
 import { NavLink } from "../../components/Nav";
+import BuilderContextProvider from "../../context/BuilderContext";
 import { ROUTES } from "../../utils/routes";
 import "../global.css";
 
@@ -28,7 +29,9 @@ export default function RootLayout({
                 <NavLink href={ROUTES.PRODUCTS}>Продукты</NavLink>
                 <NavLink href={ROUTES.FORMS}>Формы</NavLink>
               </Header>
-              <div>{children}</div>
+              <BuilderContextProvider>
+                <div>{children}</div>
+              </BuilderContextProvider>
             </div>
           </div>
         </div>

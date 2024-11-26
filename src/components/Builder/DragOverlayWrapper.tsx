@@ -1,4 +1,9 @@
-import { Active, DragOverlay, useDndMonitor } from "@dnd-kit/core";
+import {
+  Active,
+  DragOverlay,
+  DragStartEvent,
+  useDndMonitor,
+} from "@dnd-kit/core";
 import React, { useState } from "react";
 import { SidebarElementDragOverlay } from "./SidebarElement";
 import { ElementsType, FormElements } from "./FormElements";
@@ -7,7 +12,7 @@ const DragOverlayWrapper = () => {
   const [draggedItem, setDraggedItem] = useState<Active | null>(null);
 
   useDndMonitor({
-    onDragStart(event) {
+    onDragStart(event: DragStartEvent) {
       setDraggedItem(event.active);
     },
     onDragEnd() {

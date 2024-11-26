@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 import TextFormElement from "./fields/TextField";
 
+// Types
 export type ElementsType = "TextField";
 export type FormElement = {
   type: ElementsType;
@@ -9,25 +10,24 @@ export type FormElement = {
     icon: ReactElement;
     label: string;
   };
-  builderComponent: React.FC;
+  builderComponent: React.FC<{
+    elementInstance: FormElementInstance
+  }>;
   formComponent: React.FC;
   propertiesComponent: React.FC;
-};
-type FormElementsType = {
-  [key in ElementsType]: FormElement;
 };
 export type FormElementInstance = {
   id: string;
   type: ElementsType;
   extraAttributes?: Record<string, any>;
 };
+type FormElementsType = {
+  [key in ElementsType]: FormElement;
+};
 
+// Object
 export const FormElements: FormElementsType = {
   TextField: TextFormElement,
 };
 
-// const FormElements = () => {
-//   return <div>FormElements</div>;
-// };
 
-// export default FormElements;

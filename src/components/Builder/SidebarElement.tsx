@@ -3,8 +3,10 @@ import { FormElement } from "./FormElements";
 import { useDraggable } from "@dnd-kit/core";
 import cn from "classnames";
 
+// Элемент боковой панели
 const SidebarElement = ({ formElement }: { formElement: FormElement }) => {
   const { label, icon } = formElement.btnElement;
+
   const { setNodeRef, listeners, attributes, isDragging } = useDraggable({
     id: `builder-btn-${formElement.type}`,
     data: {
@@ -12,6 +14,7 @@ const SidebarElement = ({ formElement }: { formElement: FormElement }) => {
       isBuilderBtnElement: true,
     },
   });
+
   return (
     <button
       ref={setNodeRef}
@@ -31,6 +34,7 @@ const SidebarElement = ({ formElement }: { formElement: FormElement }) => {
   );
 };
 
+// Перетягиваемый элемент
 export const SidebarElementDragOverlay = ({
   formElement,
 }: {
